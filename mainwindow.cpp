@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "Loca.h"
-
 #include <QSqlQuery>
 #include <QMessageBox>
 #include <QSqlError>
@@ -21,32 +20,42 @@
 #include <qrcodegen.hpp>
 #include <iostream>
 #include <string>
+#include "dialog.h"  // Make sure you have the Dialog header
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(ui->generateQRCodeButton, &QPushButton::clicked, this, [this]() {
-        this->generateQRCodeFromLocataire();
-    });
-    connect(ui->displayStatsButton, &QPushButton::clicked, this, &MainWindow::displayTenantStats);
-    connect(ui->exportButton, &QPushButton::clicked, this, &MainWindow::exportPlayerListToPDF);
-    connect(ui->insertButton, &QPushButton::clicked, this, &MainWindow::onInsert);
-    connect(ui->readButton, &QPushButton::clicked, this, &MainWindow::onRead);
-    connect(ui->updateButton, &QPushButton::clicked, this, &MainWindow::onUpdate);
-    connect(ui->deleteButton, &QPushButton::clicked, this, &MainWindow::onDelete);
-    connect(ui->sortButton, &QPushButton::clicked, this, &MainWindow::onSort);
-    connect(ui->searchButton, &QPushButton::clicked, this, &MainWindow::rechercherParId);
-    connect(ui->joursRestantsButton, &QPushButton::clicked, this, &MainWindow::calculerEtAfficherJoursRestants);
 
+    // Create and execute the login dialog
+    Dialog loginDialog(this);
 
+    // Execute the dialog and check if login was successful (Accepted)
+    if (loginDialog.exec() == QDialog::Accepted) {
+        // Login was successful, proceed to show the main window
+        connect(ui->generateQRCodeButton, &QPushButton::clicked, this, [this]() {
+            this->generateQRCodeFromLocataire();
+        });
+        connect(ui->displayStatsButton, &QPushButton::clicked, this, &MainWindow::displayTenantStats);
+        connect(ui->exportButton, &QPushButton::clicked, this, &MainWindow::exportPlayerListToPDF);
+        connect(ui->insertButton, &QPushButton::clicked, this, &MainWindow::onInsert);
+        connect(ui->readButton, &QPushButton::clicked, this, &MainWindow::onRead);
+        connect(ui->updateButton, &QPushButton::clicked, this, &MainWindow::onUpdate);
+        connect(ui->deleteButton, &QPushButton::clicked, this, &MainWindow::onDelete);
+        connect(ui->sortButton, &QPushButton::clicked, this, &MainWindow::onSort);
+        connect(ui->searchButton, &QPushButton::clicked, this, &MainWindow::rechercherParId);
+        connect(ui->joursRestantsButton, &QPushButton::clicked, this, &MainWindow::calculerEtAfficherJoursRestants);
+    } else {
+        // If login failed (Rejected), close the application
+        QMessageBox::warning(this, "Login Failed", "Invalid ID or password. Closing application.");
+        QApplication::quit();  // Quit the application on failed login
+    }
 }
 
 MainWindow::~MainWindow() {
     delete ui;
 }
-
 void MainWindow::onInsert() {
     int id = ui->idInput->text().toInt();
     QString type = ui->typeInput->text();
@@ -64,6 +73,7 @@ void MainWindow::onInsert() {
     }
 }
 
+// The rest of your methods (onRead, onUpdate, onDelete, etc.) should be similarly left unchanged...
 void MainWindow::onRead() {
     int id = ui->idInput->text().toInt();
     QString type = ui->typeInput->text();

@@ -7,6 +7,7 @@ CONFIG += c++17
 
 SOURCES += \
     connection.cpp \
+    dialog.cpp \
     loca.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -14,9 +15,11 @@ SOURCES += \
 
 HEADERS += \
     connection.h \
+    dialog.h \
     loca.h \
     mainwindow.h \
     qrcodegen.hpp  # Make sure qrcodegen.hpp is in the correct directory
 
 FORMS += \
+    dialog.ui \
     mainwindow.ui
