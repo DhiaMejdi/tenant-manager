@@ -10,32 +10,36 @@
 #define UI_DIALOG_H
 
 #include <QtCore/QVariant>
-#include <QtWidgets/QAbstractButton>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
-#include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_Dialog
 {
 public:
-    QDialogButtonBox *buttonBox;
+    QLineEdit *idLineEdit;
+    QLineEdit *passwordLineEdit;
+    QPushButton *loginButton;
 
     void setupUi(QDialog *Dialog)
     {
         if (Dialog->objectName().isEmpty())
             Dialog->setObjectName("Dialog");
         Dialog->resize(400, 300);
-        buttonBox = new QDialogButtonBox(Dialog);
-        buttonBox->setObjectName("buttonBox");
-        buttonBox->setGeometry(QRect(30, 240, 341, 32));
-        buttonBox->setOrientation(Qt::Orientation::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok);
+        idLineEdit = new QLineEdit(Dialog);
+        idLineEdit->setObjectName("idLineEdit");
+        idLineEdit->setGeometry(QRect(190, 40, 113, 26));
+        passwordLineEdit = new QLineEdit(Dialog);
+        passwordLineEdit->setObjectName("passwordLineEdit");
+        passwordLineEdit->setGeometry(QRect(190, 140, 113, 26));
+        loginButton = new QPushButton(Dialog);
+        loginButton->setObjectName("loginButton");
+        loginButton->setGeometry(QRect(270, 250, 93, 29));
 
         retranslateUi(Dialog);
-        QObject::connect(buttonBox, &QDialogButtonBox::accepted, Dialog, qOverload<>(&QDialog::accept));
-        QObject::connect(buttonBox, &QDialogButtonBox::rejected, Dialog, qOverload<>(&QDialog::reject));
 
         QMetaObject::connectSlotsByName(Dialog);
     } // setupUi
@@ -43,6 +47,7 @@ public:
     void retranslateUi(QDialog *Dialog)
     {
         Dialog->setWindowTitle(QCoreApplication::translate("Dialog", "Dialog", nullptr));
+        loginButton->setText(QCoreApplication::translate("Dialog", "Login", nullptr));
     } // retranslateUi
 
 };

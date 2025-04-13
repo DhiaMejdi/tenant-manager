@@ -18,9 +18,8 @@
 #include <QPixmap>
 #include <QImage>
 #include <qrcodegen.hpp>
-#include <iostream>
 #include <string>
-#include "dialog.h"  // Make sure you have the Dialog header
+#include "logger.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -28,31 +27,19 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // Create and execute the login dialog
-    Dialog loginDialog(this);
-
-    // Execute the dialog and check if login was successful (Accepted)
-    if (loginDialog.exec() == QDialog::Accepted) {
-        // Login was successful, proceed to show the main window
-        connect(ui->generateQRCodeButton, &QPushButton::clicked, this, [this]() {
-            this->generateQRCodeFromLocataire();
-        });
-        connect(ui->displayStatsButton, &QPushButton::clicked, this, &MainWindow::displayTenantStats);
-        connect(ui->exportButton, &QPushButton::clicked, this, &MainWindow::exportPlayerListToPDF);
-        connect(ui->insertButton, &QPushButton::clicked, this, &MainWindow::onInsert);
-        connect(ui->readButton, &QPushButton::clicked, this, &MainWindow::onRead);
-        connect(ui->updateButton, &QPushButton::clicked, this, &MainWindow::onUpdate);
-        connect(ui->deleteButton, &QPushButton::clicked, this, &MainWindow::onDelete);
-        connect(ui->sortButton, &QPushButton::clicked, this, &MainWindow::onSort);
-        connect(ui->searchButton, &QPushButton::clicked, this, &MainWindow::rechercherParId);
-        connect(ui->joursRestantsButton, &QPushButton::clicked, this, &MainWindow::calculerEtAfficherJoursRestants);
-    } else {
-        // If login failed (Rejected), close the application
-        QMessageBox::warning(this, "Login Failed", "Invalid ID or password. Closing application.");
-        QApplication::quit();  // Quit the application on failed login
-    }
+    connect(ui->generateQRCodeButton, &QPushButton::clicked, this, [this]() {
+        this->generateQRCodeFromLocataire();
+    });
+    connect(ui->displayStatsButton, &QPushButton::clicked, this, &MainWindow::displayTenantStats);
+    connect(ui->exportButton, &QPushButton::clicked, this, &MainWindow::exportPlayerListToPDF);
+    connect(ui->insertButton, &QPushButton::clicked, this, &MainWindow::onInsert);
+    connect(ui->readButton, &QPushButton::clicked, this, &MainWindow::onRead);
+    connect(ui->updateButton, &QPushButton::clicked, this, &MainWindow::onUpdate);
+    connect(ui->deleteButton, &QPushButton::clicked, this, &MainWindow::onDelete);
+    connect(ui->sortButton, &QPushButton::clicked, this, &MainWindow::onSort);
+    connect(ui->searchButton, &QPushButton::clicked, this, &MainWindow::rechercherParId);
+    connect(ui->joursRestantsButton, &QPushButton::clicked, this, &MainWindow::calculerEtAfficherJoursRestants);
 }
-
 MainWindow::~MainWindow() {
     delete ui;
 }
@@ -108,6 +95,7 @@ void MainWindow::onDelete() {
     Loca l(id, "", "", "", "", "");
     if (l.supprimer(id)) {
         QMessageBox::information(this, "Succès", "Suppression réussie !");
+            logToFile("user delete: ");
     } else {
         QMessageBox::warning(this, "Erreur", "Suppression échouée !");
     }

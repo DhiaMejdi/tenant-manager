@@ -1,22 +1,35 @@
 #include "mainwindow.h"
-#include "connection.h"
-#include "qrcodegen.hpp"
+#include "dialog.h"
 #include <QApplication>
-#include <QSqlDatabase>
-#include <QSqlError>
+#include <QMessageBox>
+#include "connection.h"
 #include <QDebug>
+#include "logger.h"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     QApplication a(argc, argv);
-
-    // Create a Connection object and initialize the database connection
-    Connection conn;
-    if (!conn.createconnect()) {
-        qDebug() << "Failed to connect to the database.";
-        return -1;  // Exit if the database connection fails
+    Connection c;
+    logToFile("🟢 Application started");
+    // Vérifier la connexion à la base
+    if (!c.createconnect()) {
+        QMessageBox::critical(nullptr, QObject::tr("Database Error"),
+                              QObject::tr("Connection failed! Check your settings."), QMessageBox::Cancel);
+        qDebug() << "❌ Échec de la connexion à la base de données.";
+        return -1;
     }
 
-    MainWindow w;
-    w.show();
-    return a.exec();
-}
+    QMessageBox::information(nullptr, QObject::tr("Database Status"),
+                             QObject::tr("Connection successful!"), QMessageBox::Ok);
+            logToFile("🟢 connected to database");
+    qDebug() << "✅ Connexion à la base de données réussie.";
+
+    // Afficher la boîte de dialogue de login
+    Dialog loginDialog;
+    if (loginDialog.exec() == QDialog::Accepted) {
+        MainWindow w;
+        w.show();
+        return a.exec();
+    }
+        return 0;
+    }

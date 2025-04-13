@@ -5,7 +5,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
-
+#include "logger.h"
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog)
@@ -37,13 +37,14 @@ void Dialog::on_loginButton_clicked()
     // Execute the query and handle results
     if (query.exec()) {
         if (query.next()) {
-            // Successful login: Accept the dialog
+            //Successful login: Accept the dialog
+            logToFile("Login attempt by user ID: " + userId);
             QMessageBox::information(this, "Login Success", "Login successful!");
             this->accept();  // Close the dialog
         } else {
             // Invalid ID or password: Reject the dialog
+            logToFile("Login faild: " + userId);
             QMessageBox::warning(this, "Login Failed", "Invalid ID or password.");
-            this->reject();  // Do not close the dialog, stay in the dialog
         }
     } else {
         // Query failed
