@@ -6,17 +6,19 @@
 #include <QSqlError>
 #include <QDebug>
 #include "logger.h"
+
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Dialog)
+    ui(new Ui::Login)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Login");
 }
-
 Dialog::~Dialog()
 {
     delete ui;
 }
+
 
 void Dialog::on_loginButton_clicked()
 {

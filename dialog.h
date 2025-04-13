@@ -4,7 +4,7 @@
 #include <QDialog>
 
 namespace Ui {
-class Dialog;
+class Login;
 }
 
 class Dialog : public QDialog
@@ -19,7 +19,7 @@ private slots:
     void on_loginButton_clicked();  // Slot for the login button
 
 private:
-    Ui::Dialog *ui;
+    Ui::Login *ui;
 };
 
 #endif // DIALOG_H

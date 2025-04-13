@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>Login</class>
+ <widget class="QDialog" name="Login">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,24 +13,98 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog {
+    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                      stop:0 #a18cd1, stop:1 #fbc2eb);
+    border-radius: 10px;
+}
+
+QLabel {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+QPushButton {
+    background-color: #6a3093;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+}
+
+QPushButton:hover {
+    background-color: #a044ff;
+}</string>
+  </property>
   <widget class="QLineEdit" name="idLineEdit">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>40</y>
-     <width>113</width>
-     <height>26</height>
+     <x>50</x>
+     <y>70</y>
+     <width>251</width>
+     <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    border: 2px solid #a18cd1;
+    border-radius: 6px;
+    padding: 6px 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #fbc2eb, stop:1 #a18cd1);
+    color: #2e2e2e;
+    font-size: 14px;
+    font-family: 'Segoe UI', sans-serif;
+    selection-background-color: #a18cd1;
+    selection-color: white;
+}
+
+QLineEdit:focus {
+    border: 2px solid #6a3093;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #c471f5, stop:1 #fa71cd);
+    color: black;
+}</string>
+   </property>
+   <property name="text">
+    <string>id</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="passwordLineEdit">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>140</y>
-     <width>113</width>
-     <height>26</height>
+     <x>50</x>
+     <y>150</y>
+     <width>251</width>
+     <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    border: 2px solid #a18cd1;
+    border-radius: 6px;
+    padding: 6px 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #fbc2eb, stop:1 #a18cd1);
+    color: #2e2e2e;
+    font-size: 14px;
+    font-family: 'Segoe UI', sans-serif;
+    selection-background-color: #a18cd1;
+    selection-color: white;
+}
+
+QLineEdit:focus {
+    border: 2px solid #6a3093;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #c471f5, stop:1 #fa71cd);
+    color: black;
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Password</string>
    </property>
   </widget>
   <widget class="QPushButton" name="loginButton">

@@ -1,28 +1,20 @@
 #include "loca.h"
-#include "qrcodegen.hpp"
-#include <QSqlDatabase>
+#include <QSqlQuery>
 #include <QSqlError>
+#include <QSqlQueryModel>
 #include <QDebug>
-#include <QDateEdit>
+#include "logger.h"
+#include <QDate>
 
-Loca::Loca() {
-    id_locataire = 0;
-    type_locataire = "";
-    date_ent = "";
-    stat_pay = "";
-    nom_locataire = "";
-    date_sortie = "";
-}
+// Constructeur par défaut
+Loca::Loca() {}
 
-Loca::Loca(int id, QString type, QString dateE, QString statut, QString nom, QString dateS) {
-    id_locataire = id;
-    type_locataire = type;
-    date_ent = dateE;
-    stat_pay = statut;
-    nom_locataire = nom;
-    date_sortie = dateS;
-}
+// Constructeur avec paramètres
+Loca::Loca(int id, QString type, QString dateE, QString statut, QString nom, QString dateS)
+    : id_locataire(id), type_locataire(type), date_ent(dateE),
+    stat_pay(statut), nom_locataire(nom), date_sortie(dateS) {}
 
+// Méthode pour ajouter un locataire à la base de données
 bool Loca::ajouter() {
     QSqlQuery query;
 
@@ -43,6 +35,8 @@ bool Loca::ajouter() {
 
     // Exécuter la requête et vérifier l'erreur
     if (query.exec()) {
+        // Ajouter la trace après l'ajout du locataire
+        logToFile("Locataire ajouté : " + QString::number(id_locataire) + ", " + nom_locataire);
         return true;  // Requête exécutée avec succès
     } else {
         qDebug() << "Erreur SQL : " << query.lastError().text();
@@ -50,42 +44,51 @@ bool Loca::ajouter() {
     }
 }
 
+// Méthode pour afficher tous les locataires
 QSqlQueryModel* Loca::afficher() {
     QSqlQueryModel* model = new QSqlQueryModel();
-    model->setQuery("SELECT * FROM LOCATAIRE");
-
-    if (model->lastError().isValid()) {
-        qDebug() << "Erreur SQL : " << model->lastError().text();
-    }
-
+    QSqlQuery query;
+    query.prepare("SELECT * FROM LOCATAIRE");
+    query.exec();
+    model->setQuery(query);
     return model;
 }
 
+// Méthode pour modifier les informations d'un locataire
 bool Loca::modifier(int id) {
     QSqlQuery query;
-
-    // Format des dates en utilisant QDateEdit
-    QString dateEFormatted = QDate::fromString(date_ent, "yyyy-MM-dd").toString("yyyy-MM-dd");
-    QString dateSFormatted = QDate::fromString(date_sortie, "yyyy-MM-dd").toString("yyyy-MM-dd");
-
-    // Préparer la requête de mise à jour
-    query.prepare("UPDATE LOCATAIRE SET TYPE_LOCATAIRE=:type, DATE_ENT=TO_DATE(:dateE, 'YYYY-MM-DD'), STAT_PAY=:statut, NOM_LOCATAIRE=:nom, DATE_SORTIE=TO_DATE(:dateS, 'YYYY-MM-DD') "
-                  "WHERE ID_LOCATAIRE=:id");
+    query.prepare("UPDATE LOCATAIRE SET TYPE_LOCATAIRE = :type, DATE_ENT = :dateE, STATUT_PAIEMENT = :statut, "
+                  "NOM_LOCATAIRE = :nom, DATE_SORTIE = :dateS WHERE ID_LOCATAIRE = :id");
 
     query.bindValue(":id", id);
     query.bindValue(":type", type_locataire);
-    query.bindValue(":dateE", dateEFormatted);  // Utiliser la date formatée
+    query.bindValue(":dateE", date_ent);
     query.bindValue(":statut", stat_pay);
     query.bindValue(":nom", nom_locataire);
-    query.bindValue(":dateS", dateSFormatted);  // Utiliser la date formatée
+    query.bindValue(":dateS", date_sortie);
 
-    return query.exec();
+    if (query.exec()) {
+        logToFile("Modification du locataire ID: " + QString::number(id));
+        return true;
+    } else {
+        logToFile("Échec de la modification du locataire ID: " + QString::number(id));
+        qDebug() << query.lastError().text();
+        return false;
+    }
 }
 
+// Méthode pour supprimer un locataire
 bool Loca::supprimer(int id) {
     QSqlQuery query;
     query.prepare("DELETE FROM LOCATAIRE WHERE ID_LOCATAIRE = :id");
     query.bindValue(":id", id);
 
-    return query.exec();
+    if (query.exec()) {
+        logToFile("Suppression du locataire ID: " + QString::number(id));
+        return true;
+    } else {
+        logToFile("Échec de la suppression du locataire ID: " + QString::number(id));
+        qDebug() << query.lastError().text();
+        return false;
+    }
 }

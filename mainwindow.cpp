@@ -18,8 +18,7 @@
 #include <QPixmap>
 #include <QImage>
 #include <qrcodegen.hpp>
-#include <string>
-#include "logger.h"
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -27,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // Connect signals to slots
     connect(ui->generateQRCodeButton, &QPushButton::clicked, this, [this]() {
         this->generateQRCodeFromLocataire();
     });
@@ -40,10 +40,14 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->searchButton, &QPushButton::clicked, this, &MainWindow::rechercherParId);
     connect(ui->joursRestantsButton, &QPushButton::clicked, this, &MainWindow::calculerEtAfficherJoursRestants);
 }
-MainWindow::~MainWindow() {
+
+MainWindow::~MainWindow()
+{
     delete ui;
 }
-void MainWindow::onInsert() {
+
+void MainWindow::onInsert()
+{
     int id = ui->idInput->text().toInt();
     QString type = ui->typeInput->text();
     QString dateE = ui->dateEntInput->text();
@@ -60,8 +64,8 @@ void MainWindow::onInsert() {
     }
 }
 
-// The rest of your methods (onRead, onUpdate, onDelete, etc.) should be similarly left unchanged...
-void MainWindow::onRead() {
+void MainWindow::onRead()
+{
     int id = ui->idInput->text().toInt();
     QString type = ui->typeInput->text();
     QString dateE = ui->dateEntInput->text();
@@ -73,7 +77,8 @@ void MainWindow::onRead() {
     ui->tableView->setModel(l.afficher());
 }
 
-void MainWindow::onUpdate() {
+void MainWindow::onUpdate()
+{
     int id = ui->idInput->text().toInt();
     QString type = ui->typeInput->text();
     QString dateE = ui->dateEntInput->text();
@@ -89,19 +94,20 @@ void MainWindow::onUpdate() {
     }
 }
 
-void MainWindow::onDelete() {
+void MainWindow::onDelete()
+{
     int id = ui->idInput->text().toInt();
 
     Loca l(id, "", "", "", "", "");
     if (l.supprimer(id)) {
         QMessageBox::information(this, "Succès", "Suppression réussie !");
-            logToFile("user delete: ");
     } else {
         QMessageBox::warning(this, "Erreur", "Suppression échouée !");
     }
 }
 
-void MainWindow::onSort() {
+void MainWindow::onSort()
+{
     QSqlQuery query;
     query.prepare("SELECT * FROM LOCATAIRE");
 
@@ -121,7 +127,8 @@ void MainWindow::onSort() {
     }
 }
 
-void MainWindow::exportPlayerListToPDF() {
+void MainWindow::exportPlayerListToPDF()
+{
     QString filePath = QFileDialog::getSaveFileName(this, tr("Save PDF"), "", tr("PDF Files (*.pdf)"));
     if (filePath.isEmpty()) {
         return;
@@ -160,7 +167,8 @@ void MainWindow::exportPlayerListToPDF() {
     QMessageBox::information(this, "Succès", "Liste des locataires exportée en PDF !");
 }
 
-void MainWindow::displayTenantStats() {
+void MainWindow::displayTenantStats()
+{
     QSqlQuery query;
     query.prepare("SELECT ID_LOCATAIRE, NOM_LOCATAIRE FROM LOCATAIRE ORDER BY NOM_LOCATAIRE ASC");
 
@@ -202,7 +210,8 @@ void MainWindow::displayTenantStats() {
     chartView->show();
 }
 
-void MainWindow::rechercherParId() {
+void MainWindow::rechercherParId()
+{
     bool ok;
     int id = ui->idSearchInput->text().toInt(&ok);
     if (!ok) {
@@ -241,7 +250,8 @@ void MainWindow::rechercherParId() {
     }
 }
 
-void MainWindow::calculerEtAfficherJoursRestants() {
+void MainWindow::calculerEtAfficherJoursRestants()
+{
     QSqlQuery query;
     query.prepare("SELECT ID_LOCATAIRE, NOM_LOCATAIRE, DATE_ENT, DATE_SORTIE FROM LOCATAIRE");
 
@@ -258,7 +268,9 @@ void MainWindow::calculerEtAfficherJoursRestants() {
         }
     }
 }
-void MainWindow::generateQRCodeFromLocataire() {
+
+void MainWindow::generateQRCodeFromLocataire()
+{
     bool ok;
     int id = ui->idSearchInput->text().toInt(&ok);
     if (!ok || id == 0) {
@@ -266,7 +278,6 @@ void MainWindow::generateQRCodeFromLocataire() {
         return;
     }
 
-    // Query the database for the locataire with the given ID
     QSqlQuery query;
     query.prepare("SELECT NOM_LOCATAIRE FROM LOCATAIRE WHERE ID_LOCATAIRE = :id");
     query.bindValue(":id", id);
@@ -275,36 +286,25 @@ void MainWindow::generateQRCodeFromLocataire() {
         if (query.next()) {
             QString locataireName = query.value("NOM_LOCATAIRE").toString();
 
-            // Generate QR code using qrcodegen
             qrcodegen::QrCode qr = qrcodegen::QrCode::encodeText(locataireName.toStdString().c_str(), qrcodegen::QrCode::Ecc::LOW);
             int qrSize = qr.getSize();
 
-            // Create QImage for the QR code
-            QImage qrImage(qrSize, qrSize, QImage::Format_RGB888);  // Use Format_RGB888 for better color handling
+            QImage qrImage(qrSize, qrSize, QImage::Format_RGB888);
 
-            // Fill the QImage with black and white colors based on QR code data
             for (int y = 0; y < qrSize; ++y) {
                 for (int x = 0; x < qrSize; ++x) {
-                    QColor color = qr.getModule(x, y) ? Qt::black : Qt::white;  // Black for module, white for background
+                    QColor color = qr.getModule(x, y) ? Qt::black : Qt::white;
                     qrImage.setPixel(x, y, color.rgb());
                 }
             }
 
             QPixmap pixmap = QPixmap::fromImage(qrImage);
 
-            // Ensure the label is set to the right size: 311x311
-            ui->qrCodeLabel->setFixedSize(161, 141);  // Fix the label size
-
-            // Now scale the pixmap to the label's size
+            ui->qrCodeLabel->setFixedSize(161, 141);
             QPixmap scaledPixmap = pixmap.scaled(ui->qrCodeLabel->size(), Qt::KeepAspectRatio);
-
-            // Set the scaled image to the label
             ui->qrCodeLabel->setPixmap(scaledPixmap);
         } else {
             QMessageBox::information(this, "Erreur", "Locataire non trouvé.");
         }
-    } else {
-        qDebug() << "Erreur SQL : " << query.lastError().text();
-        QMessageBox::warning(this, "Erreur", "Impossible de récupérer les informations du locataire.");
     }
 }

@@ -1,2 +1,38 @@
 [2025-04-13 18:10:21] 🟢 Application started
 [2025-04-13 18:10:22] 🟢 connected to database
+[2025-04-13 22:50:46] 🟢 Application started
+[2025-04-13 22:50:49] 🟢 connected to database
+[2025-04-13 22:52:29] 🟢 Application started
+[2025-04-13 22:52:32] 🟢 connected to database
+[2025-04-13 22:53:39] 🟢 Application started
+[2025-04-13 22:53:41] 🟢 connected to database
+[2025-04-13 22:56:17] 🟢 Application started
+[2025-04-13 22:56:19] 🟢 connected to database
+[2025-04-13 22:56:34] Login faild: 123
+[2025-04-13 22:56:36] Login faild: 123
+[2025-04-13 22:56:38] Login faild: 123
+[2025-04-13 22:56:39] Login faild: 123
+[2025-04-13 23:04:22] 🟢 Application started
+[2025-04-13 23:04:24] 🟢 connected to database
+[2025-04-13 23:04:36] Login attempt by user ID: dhia
+[2025-04-13 23:05:27] Échec de l'ajout du locataire ID: 0
+[2025-04-13 23:05:34] Échec de l'ajout du locataire ID: 0
+[2025-04-13 23:05:58] Échec de l'ajout du locataire ID: 14587
+[2025-04-13 23:06:18] Échec de l'ajout du locataire ID: 14587
+[2025-04-13 23:07:53] 🟢 Application started
+[2025-04-13 23:07:55] 🟢 connected to database
+[2025-04-13 23:08:02] Login attempt by user ID: dhia
+[2025-04-13 23:08:14] Échec de l'ajout du locataire ID: 12345
+[2025-04-13 23:16:18] 🟢 Application started
+[2025-04-13 23:16:20] 🟢 connected to database
+[2025-04-13 23:16:27] Login attempt by user ID: dhia
+[2025-04-13 23:16:40] Suppression du locataire ID: 0
+[2025-04-13 23:16:41] user delete: 
+[2025-04-13 23:17:54] 🟢 Application started
+[2025-04-13 23:17:56] 🟢 connected to database
+[2025-04-13 23:18:02] Login attempt by user ID: dhia
+[2025-04-13 23:18:15] Locataire ajouté : 12356, dhia
+[2025-04-13 23:22:56] 🟢 Application started
+[2025-04-13 23:22:59] 🟢 connected to database
+[2025-04-13 23:23:04] Login attempt by user ID: dhia
+[2025-04-13 23:23:49] Locataire ajouté : 147852, dhia
