@@ -1,0 +1,11 @@
+release/addadmindialog.o
+release/connection.o
+release/dialog.o
+release/loca.o
+release/logger.o
+release/main.o
+release/mainwindow.o
+release/qrcodegen.o
+release/moc_addadmindialog.o
+release/moc_dialog.o
+release/moc_mainwindow.o

@@ -17,18 +17,174 @@
    <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>-30</x>
-      <y>0</y>
-      <width>2381</width>
-      <height>1301</height>
+      <x>-210</x>
+      <y>-10</y>
+      <width>1761</width>
+      <height>1231</height>
      </rect>
     </property>
     <property name="statusTip">
      <string>QTableWidget {     background-color: #2C2C2C; /* Fond gris foncé pour la table */     color: #FFFFFF; /* Texte en blanc */     border: 1px solid #444444; /* Bordure de la table */ }  QTableWidget::item {     padding: 10px;     border: 1px solid #333333; /* Bordure des cellules */ }  QTableWidget::item:hover {     background-color: #444444; /* Couleur de fond lors du survol */ }  QTableWidget::item:selected {     background-color: #2E8B57; /* Couleur de fond quand la cellule est sélectionnée */     color: white; /* Couleur du texte sélectionné */ }  QTableWidget::item:selected:hover {     background-color: #1D6B44; /* Couleur de fond lors du survol de la cellule sélectionnée */ } </string>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: #1D1D1D;
-</string>
+     <string notr="true">/* General QWidget styling with animated background */
+QWidget {
+    background: linear-gradient(45deg, #6A4CFC, #9C6EFC);
+    background-size: 400% 400%; /* Large background size for animation */
+    animation: gradientAnimation 15s ease infinite; /* Apply the animation */
+    color: #FFF; /* White text */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+/* Background gradient animation keyframes */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%; /* Start from the left */
+    }
+    50% {
+        background-position: 100% 50%; /* Move to the right */
+    }
+    100% {
+        background-position: 0% 50%; /* Return to the start */
+    }
+}
+
+/* Hover effect for QWidget */
+QWidget:hover {
+    background: #5A2D84; /* Lighter purple when hovering */
+}
+
+/* QLabel Styling */
+QLabel {
+    color: #E2B0FF; /* Light purple text for a futuristic feel */
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 0 0 8px rgba(226, 176, 255, 0.6); /* Soft purple glow */
+}
+
+/* QPushButton with smooth hover effect */
+QPushButton {
+    background: linear-gradient(45deg, #6A4CFC, #9C6EFC); /* Purple gradient button */
+    border: 2px solid #9C6EFC; /* Soft border with light purple */
+    color: #FFF; /* White text */
+    border-radius: 12px;
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 15px rgba(106, 76, 252, 0.6); /* Subtle glowing effect */
+}
+
+/* Hover effect for QPushButton */
+QPushButton:hover {
+    background: linear-gradient(45deg, #9C6EFC, #6A4CFC); /* Reverse gradient for hover */
+    border-color: #6A4CFC;
+    box-shadow: 0 0 20px rgba(106, 76, 252, 0.8); /* Stronger glow on hover */
+    transform: scale(1.05); /* Slight scale-up for hover effect */
+}
+
+/* Pressed effect for QPushButton */
+QPushButton:pressed {
+    background: #6A4CFC; /* Dark purple when pressed */
+    box-shadow: 0 0 10px rgba(106, 76, 252, 0.8); /* Still glowing effect */
+    transform: scale(0.98); /* Slight scale-down */
+}
+
+/* QLineEdit with purple border focus */
+QLineEdit {
+    background-color: #3A1D6A; /* Dark purple background */
+    border: 2px solid #6A4CFC;
+    color: #FFF; /* White text */
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+QLineEdit:focus {
+    border-color: #9C6EFC; /* Lighter purple when focused */
+    box-shadow: 0 0 10px rgba(156, 110, 252, 0.7); /* Soft purple glow */
+}
+
+/* QComboBox */
+QComboBox {
+    background-color: #3A1D6A; /* Dark purple background */
+    border: 2px solid #6A4CFC;
+    color: #FFF;
+    border-radius: 8px;
+    padding: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+QComboBox:hover {
+    border-color: #9C6EFC; /* Lighter border color on hover */
+}
+
+QComboBox:focus {
+    border-color: #9C6EFC;
+    box-shadow: 0 0 10px rgba(156, 110, 252, 0.7); /* Focus effect with purple glow */
+}
+
+/* QTableView with purple and neon accents */
+
+
+QHeaderView::section {
+    background-color: #6A4CFC; /* Purple header background */
+    color: #FFF;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #6A4CFC; /* Dark purple border for headers */
+    border-radius: 5px;
+    text-align: center;
+}
+/* Hover effect for table rows */
+QTableView::item:hover {
+    background-color: #9C6EFC; /* Lighter purple when hovering over a row */
+    color: #181818; /* Darker text when hovered */
+}
+
+
+
+/* Scrollbar design with a futuristic purple look */
+QScrollBar:vertical, QScrollBar:horizontal {
+    background: #2E1A47; /* Dark background for scrollbar */
+    width: 12px;
+    border-radius: 8px;
+}
+
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background: #6A4CFC; /* Purple scrollbar handle */
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical:hover, QScrollBar::handle:horizontal:hover {
+    background: #9C6EFC; /* Lighter purple on hover */
+}
+
+/* QLabel for displaying the QR code or any other label */
+QLabel {
+    color: #E2B0FF; /* Light purple text */
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(226, 176, 255, 0.6); /* Glowing effect */
+}
+QTableView {
+    background-color: #2E1A47; /* Dark background for the table */
+    border: 2px solid #6A4CFC; /* Dark purple border around the table */
+    color: #FFF; /* White text */
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 10px;
+    alternate-background-color: #3A1D6A; /* Slightly lighter alternate rows */
+}</string>
     </property>
     <widget class="QWidget" name="widget_2" native="true">
      <property name="geometry">
@@ -358,31 +514,10 @@ QPushButton:checked, QPushButton:focus {
       </property>
      </widget>
     </widget>
-    <widget class="QPushButton" name="pushButton_9">
-     <property name="geometry">
-      <rect>
-       <x>990</x>
-       <y>120</y>
-       <width>181</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: #8A2BE2;
-    color: white;
-    border-radius: 8px;
-    padding: 10px 15px;
-    font-size: 14px;
-    font-weight: bold;</string>
-     </property>
-     <property name="text">
-      <string>Get started</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="pushButton_11">
      <property name="geometry">
       <rect>
-       <x>680</x>
+       <x>650</x>
        <y>20</y>
        <width>801</width>
        <height>141</height>
@@ -403,9 +538,9 @@ QPushButton:checked, QPushButton:focus {
     <widget class="QPushButton" name="exportButton">
      <property name="geometry">
       <rect>
-       <x>1380</x>
+       <x>1410</x>
        <y>620</y>
-       <width>161</width>
+       <width>191</width>
        <height>51</height>
       </rect>
      </property>
@@ -428,7 +563,7 @@ QPushButton:checked, QPushButton:focus {
       <rect>
        <x>290</x>
        <y>80</y>
-       <width>311</width>
+       <width>341</width>
        <height>621</height>
       </rect>
      </property>
@@ -491,7 +626,7 @@ border-radius: 10px;</string>
      <widget class="QLabel" name="label_20">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>-10</x>
         <y>90</y>
         <width>141</width>
         <height>64</height>
@@ -563,8 +698,8 @@ border-radius: 10px;</string>
      <widget class="QLabel" name="label_26">
       <property name="geometry">
        <rect>
-        <x>-10</x>
-        <y>320</y>
+        <x>0</x>
+        <y>330</y>
         <width>151</width>
         <height>64</height>
        </rect>
@@ -581,9 +716,9 @@ border-radius: 10px;</string>
      <widget class="QPushButton" name="insertButton">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>110</x>
         <y>570</y>
-        <width>84</width>
+        <width>101</width>
         <height>39</height>
        </rect>
       </property>
@@ -602,9 +737,9 @@ border-radius: 10px;</string>
      <widget class="QPushButton" name="pushButton_annuler">
       <property name="geometry">
        <rect>
-        <x>210</x>
+        <x>220</x>
         <y>570</y>
-        <width>82</width>
+        <width>111</width>
         <height>39</height>
        </rect>
       </property>
@@ -625,7 +760,7 @@ border-radius: 10px;</string>
        <rect>
         <x>0</x>
         <y>20</y>
-        <width>228</width>
+        <width>241</width>
         <height>61</height>
        </rect>
       </property>
@@ -665,8 +800,8 @@ border-radius: 10px;</string>
      <widget class="QLabel" name="label_29">
       <property name="geometry">
        <rect>
-        <x>-10</x>
-        <y>390</y>
+        <x>0</x>
+        <y>400</y>
         <width>121</width>
         <height>51</height>
        </rect>
@@ -683,29 +818,55 @@ border-radius: 10px;</string>
      <widget class="QDateEdit" name="dateEntInput">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>140</x>
         <y>220</y>
-        <width>151</width>
+        <width>161</width>
         <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QDateEdit {
-    background-color: #f0f0f0;   /* Light grey background for input */
-    border: 2px solid #76c7c0;    /* Teal border around the input */
-    border-radius: 5px;           /* Rounded corners */
-    padding: 5px 10px;            /* Padding inside the input field */
-    font-size: 16px;              /* Font size of the text */
-    color: #333;                  /* Text color */
+       <string notr="true">/* Style for QDateEdit with Purple Gradient */
+QDateEdit {
+    border: 2px solid #9C27B0;  /* Purple border */
+    border-radius: 10px;  /* Rounded corners */
+    padding: 5px 10px;  /* Padding inside the input box */
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #9C27B0, stop:1 #673AB7);  /* Gradient from light purple to dark purple */
+    color: white;  /* White text color */
+    font-size: 14px;  /* Font size for the date */
+    selection-background-color: #D500F9;  /* Bright purple highlight when text is selected */
 }
 
-QDateEdit:hover {
-    border: 2px solid #45a049;    /* Darker border on hover */
+/* Style for the date popup calendar (if used) */
+QCalendarWidget {
+    background-color: #673AB7;  /* Dark purple background for the calendar */
+    border: 1px solid #9C27B0;  /* Lighter purple border for the calendar */
+    border-radius: 10px;  /* Rounded corners for the calendar */
 }
 
-QDateEdit:focus {
-    border: 2px solid #008CBA;    /* Blue border when focused */
-    background-color: #e0f7fa;    /* Light blue background when focused */
+QCalendarWidget QToolButton {
+    background-color: #9C27B0;  /* Purple background for calendar buttons */
+    color: white;  /* White text for buttons */
+    border-radius: 5px;  /* Rounded corners for the buttons */
+}
+
+QCalendarWidget QToolButton:hover {
+    background-color: #7B1FA2;  /* Darker purple when hovering */
+}
+
+/* Style for the calendar date cells */
+QCalendarWidget QAbstractItemView:enabled {
+    color: white;  /* White text color for the dates */
+    background-color: #9C27B0;  /* Light purple background for date cells */
+}
+
+QCalendarWidget QAbstractItemView:selected {
+    background-color: #D500F9;  /* Bright purple background for selected date */
+    color: white;  /* White text when selected */
+}
+
+QCalendarWidget QAbstractItemView:disabled {
+    color: #B39DDB;  /* Light grey text for disabled cells */
+    background-color: #673AB7;  /* Dark purple for disabled cells */
 }
 </string>
       </property>
@@ -713,29 +874,69 @@ QDateEdit:focus {
      <widget class="QComboBox" name="statPayInput">
       <property name="geometry">
        <rect>
-        <x>151</x>
+        <x>140</x>
         <y>270</y>
-        <width>151</width>
+        <width>161</width>
         <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QComboBox {
-    background-color: #f0f0f0; /* Light gray background for the input field */
-    border: 2px solid #76c7c0;  /* Green border around the input field */
-    border-radius: 5px;         /* Rounded corners */
-    padding: 5px 10px;          /* Padding inside the input field */
-    font-size: 16px;            /* Font size of the text */
-    color: #333;                /* Text color */
+       <string notr="true">/* General QComboBox styling */
+QComboBox {
+    background-color: #5E35B1;  /* Dark purple background */
+    color: white;  /* White text color */
+    border: 1px solid #8E24AA;  /* Lighter purple border */
+    border-radius: 12px;  /* Rounded corners */
+    padding: 8px;  /* Padding inside the combo box */
+    font-size: 16px;  /* Set the font size */
 }
 
-QComboBox:hover {
-    border: 2px solid #45a049;  /* Darker green on hover */
-}
-
+/* QComboBox when it is focused (when clicked or selected) */
 QComboBox:focus {
-    border: 2px solid #008CBA;  /* Blue border when focused */
-    background-color: #e0f7fa;  /* Light blue background when focused */
+    border: 1px solid #9C27B0;  /* Purple color when focused */
+    background-color: #7E57C2;  /* Lighter purple background when focused */
+}
+
+/* QComboBox drop-down button (the arrow) */
+QComboBox::drop-down {
+    border: none;  /* Remove the border */
+    background-color: transparent;  /* Transparent background */
+    width: 30px;  /* Set width for the drop-down button */
+}
+
+/* QComboBox button when hovered */
+QComboBox::drop-down:hover {
+    background-color: #AB47BC;  /* Slightly brighter purple for hover effect */
+}
+
+/* The combo box popup (the list) */
+QListView {
+    background-color: #7E57C2;  /* Lighter purple for the dropdown list */
+    color: white;  /* White text in the list */
+    border-radius: 8px;  /* Rounded corners for the dropdown list */
+}
+
+/* When an item in the dropdown list is hovered */
+QListView::item:hover {
+    background-color: #9C27B0;  /* Lighter purple for hovered item */
+    border-radius: 8px;  /* Rounded corners for hovered item */
+}
+
+/* Style for the selected item in the dropdown list */
+QListView::item:selected {
+    background-color: #AB47BC;  /* Even brighter purple for selected item */
+}
+
+/* Disabled state for the combo box */
+QComboBox:disabled {
+    background-color: #B39DDB;  /* Lighter background when disabled */
+    border: 1px solid #D1C4E9;  /* Light border when disabled */
+    color: #9E9E9E;  /* Light gray text when disabled */
+}
+
+/* Optional: smooth transition for combo box focus effect */
+QComboBox {
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 </string>
       </property>
@@ -753,29 +954,55 @@ QComboBox:focus {
      <widget class="QDateEdit" name="dateSortieInput">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>140</x>
         <y>400</y>
-        <width>171</width>
+        <width>161</width>
         <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">QDateEdit {
-    background-color: #f0f0f0;   /* Light grey background for input */
-    border: 2px solid #76c7c0;    /* Teal border around the input */
-    border-radius: 5px;           /* Rounded corners */
-    padding: 5px 10px;            /* Padding inside the input field */
-    font-size: 16px;              /* Font size of the text */
-    color: #333;                  /* Text color */
+       <string notr="true">/* Style for QDateEdit with Purple Gradient */
+QDateEdit {
+    border: 2px solid #9C27B0;  /* Purple border */
+    border-radius: 10px;  /* Rounded corners */
+    padding: 5px 10px;  /* Padding inside the input box */
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #9C27B0, stop:1 #673AB7);  /* Gradient from light purple to dark purple */
+    color: white;  /* White text color */
+    font-size: 14px;  /* Font size for the date */
+    selection-background-color: #D500F9;  /* Bright purple highlight when text is selected */
 }
 
-QDateEdit:hover {
-    border: 2px solid #45a049;    /* Darker border on hover */
+/* Style for the date popup calendar (if used) */
+QCalendarWidget {
+    background-color: #673AB7;  /* Dark purple background for the calendar */
+    border: 1px solid #9C27B0;  /* Lighter purple border for the calendar */
+    border-radius: 10px;  /* Rounded corners for the calendar */
 }
 
-QDateEdit:focus {
-    border: 2px solid #008CBA;    /* Blue border when focused */
-    background-color: #e0f7fa;    /* Light blue background when focused */
+QCalendarWidget QToolButton {
+    background-color: #9C27B0;  /* Purple background for calendar buttons */
+    color: white;  /* White text for buttons */
+    border-radius: 5px;  /* Rounded corners for the buttons */
+}
+
+QCalendarWidget QToolButton:hover {
+    background-color: #7B1FA2;  /* Darker purple when hovering */
+}
+
+/* Style for the calendar date cells */
+QCalendarWidget QAbstractItemView:enabled {
+    color: white;  /* White text color for the dates */
+    background-color: #9C27B0;  /* Light purple background for date cells */
+}
+
+QCalendarWidget QAbstractItemView:selected {
+    background-color: #D500F9;  /* Bright purple background for selected date */
+    color: white;  /* White text when selected */
+}
+
+QCalendarWidget QAbstractItemView:disabled {
+    color: #B39DDB;  /* Light grey text for disabled cells */
+    background-color: #673AB7;  /* Dark purple for disabled cells */
 }
 </string>
       </property>
@@ -785,7 +1012,7 @@ QDateEdit:focus {
        <rect>
         <x>10</x>
         <y>570</y>
-        <width>101</width>
+        <width>91</width>
         <height>39</height>
        </rect>
       </property>
@@ -794,41 +1021,20 @@ QDateEdit:focus {
     color: white;
     border-radius: 8px;
     padding: 10px 15px;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;</string>
       </property>
       <property name="text">
        <string>Modifier</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="generateQRCodeButton">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>510</y>
-        <width>84</width>
-        <height>39</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: #8A2BE2;
-    color: white;
-    border-radius: 8px;
-    padding: 10px 15px;
-    font-size: 14px;
-    font-weight: bold;</string>
-      </property>
-      <property name="text">
-       <string>QR</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QPushButton" name="deleteButton">
      <property name="geometry">
       <rect>
-       <x>870</x>
+       <x>810</x>
        <y>660</y>
-       <width>101</width>
+       <width>141</width>
        <height>39</height>
       </rect>
      </property>
@@ -849,22 +1055,17 @@ QDateEdit:focus {
       <rect>
        <x>640</x>
        <y>380</y>
-       <width>961</width>
+       <width>1031</width>
        <height>231</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">QTableView {
-     background-color: #bba4ff;
-     padding: 10px;
-    border: 1px solid   #FFFFFF; /* Bordure des cellules */
+      <string notr="true">QHeaderView::section {
+    background-color: #6A4CFC;
+    color: white;
+    font-weight: bold;
 }
-
-QHeaderView::section {
- background-color: #418dff; /* Fond gris foncé pour la table */
-    color: #FFFFFF; /* Texte en blanc */
-    border: 1px solid  #8A2BE2; /* Bordure de la table */
-}</string>
+</string>
      </property>
      <property name="showGrid">
       <bool>true</bool>
@@ -876,7 +1077,7 @@ QHeaderView::section {
     <widget class="QLineEdit" name="LineEdit_id_supprimer">
      <property name="geometry">
       <rect>
-       <x>700</x>
+       <x>640</x>
        <y>660</y>
        <width>160</width>
        <height>41</height>
@@ -892,31 +1093,12 @@ QHeaderView::section {
   </string>
      </property>
     </widget>
-    <widget class="QLabel" name="label_30">
-     <property name="geometry">
-      <rect>
-       <x>630</x>
-       <y>320</y>
-       <width>228</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"> font-size: 20px;
-    font-weight: bold;
-    color: #8B008B;
-    padding: 10px;</string>
-     </property>
-     <property name="text">
-      <string>Listes des Locataires</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="readButton">
      <property name="geometry">
       <rect>
-       <x>1030</x>
+       <x>1000</x>
        <y>620</y>
-       <width>211</width>
+       <width>251</width>
        <height>51</height>
       </rect>
      </property>
@@ -1020,9 +1202,9 @@ QHeaderView::section {
     <widget class="QPushButton" name="joursRestantsButton">
      <property name="geometry">
       <rect>
-       <x>1010</x>
+       <x>980</x>
        <y>330</y>
-       <width>221</width>
+       <width>251</width>
        <height>41</height>
       </rect>
      </property>
@@ -1041,25 +1223,201 @@ QHeaderView::section {
     <widget class="QLabel" name="qrCodeLabel">
      <property name="geometry">
       <rect>
-       <x>660</x>
-       <y>180</y>
-       <width>161</width>
-       <height>141</height>
+       <x>1460</x>
+       <y>10</y>
+       <width>184</width>
+       <height>199</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">/* Styling for the QR Code label */
+QLabel#qrCodeLabel {
+    background: linear-gradient(135deg, #9C27B0, #7C4DFF); /* Purple gradient */
+    border-radius: 15px;  /* Rounded corners for the label */
+    padding: 10px;  /* Padding inside the label to prevent content from touching edges */
+    border: 2px solid #8E24AA; /* Lighter purple border around the label */
+    min-width: 160px;  /* Ensure label has a minimum width */
+    min-height: 160px;  /* Ensure label has a minimum height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* When the label is hovered over (optional, for interactivity) */
+QLabel#qrCodeLabel:hover {
+    background: linear-gradient(135deg, #7C4DFF, #9C27B0); /* Reverse the gradient on hover */
+    border: 2px solid #AB47BC; /* Brighter border when hovered */
+}
+
+/* When the label is focused (optional, if applicable) */
+QLabel#qrCodeLabel:focus {
+    border: 2px solid #AB47BC;  /* Bright purple border when focused */
+}
+
+/* Styling for the text inside the label (optional, in case you want to show text) */
+QLabel#qrCodeLabel:empty {
+    color: #FFFFFF;  /* White text when label is empty (if*
+</string>
+     </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string>QR</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="generateQRCodeButton">
+     <property name="geometry">
+      <rect>
+       <x>1510</x>
+       <y>200</y>
+       <width>84</width>
+       <height>39</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #8A2BE2;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;</string>
+     </property>
+     <property name="text">
+      <string>QR</string>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>640</x>
+       <y>330</y>
+       <width>241</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="mouseTracking">
+      <bool>true</bool>
+     </property>
+     <property name="tabletTracking">
+      <bool>true</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #2C2C2C;
+padding: 10px;
+border-radius: 10px;</string>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <widget class="QPushButton" name="insertButton_3">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>570</y>
+        <width>84</width>
+        <height>39</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #8A2BE2;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;</string>
+      </property>
+      <property name="text">
+       <string>Ajouter</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_annuler_3">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>570</y>
+        <width>82</width>
+        <height>39</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #8A2BE2;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;</string>
+      </property>
+      <property name="text">
+       <string>Annuler</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="updateButton_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>570</y>
+        <width>101</width>
+        <height>39</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: #8A2BE2;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;</string>
+      </property>
+      <property name="text">
+       <string>Modifier</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_30">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>241</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"> font-size: 20px;
+    font-weight: bold;
+    color: #8B008B;
+    padding: 10px;</string>
+      </property>
+      <property name="text">
+       <string>Listes des Locataires</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QPushButton" name="addAdminButton">
+     <property name="geometry">
+      <rect>
+       <x>1630</x>
+       <y>680</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #8A2BE2;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 8px;
+    font-weight: bold;</string>
+     </property>
+     <property name="text">
+      <string>Ajouter un admin</string>
      </property>
     </widget>
     <zorder>pushButton_11</zorder>
     <zorder>widget_2</zorder>
-    <zorder>pushButton_9</zorder>
     <zorder>exportButton</zorder>
     <zorder>groupBox</zorder>
     <zorder>deleteButton</zorder>
     <zorder>tableView</zorder>
     <zorder>LineEdit_id_supprimer</zorder>
-    <zorder>label_30</zorder>
     <zorder>readButton</zorder>
     <zorder>displayStatsButton</zorder>
     <zorder>sortButton</zorder>
@@ -1067,6 +1425,9 @@ QHeaderView::section {
     <zorder>searchButton</zorder>
     <zorder>joursRestantsButton</zorder>
     <zorder>qrCodeLabel</zorder>
+    <zorder>generateQRCodeButton</zorder>
+    <zorder>groupBox_2</zorder>
+    <zorder>addAdminButton</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -49,9 +49,11 @@ private slots:
     void rechercherParId();
     void calculerEtAfficherJoursRestants();
     void generateQRCodeFromLocataire();
+    void openAddAdminDialog();
 
 private:
     Ui::MainWindow *ui;
+    void setupUI();
 };
 
 #endif // MAINWINDOW_H

@@ -1,0 +1,11 @@
+debug/addadmindialog.o
+debug/connection.o
+debug/dialog.o
+debug/loca.o
+debug/logger.o
+debug/main.o
+debug/mainwindow.o
+debug/qrcodegen.o
+debug/moc_addadmindialog.o
+debug/moc_dialog.o
+debug/moc_mainwindow.o

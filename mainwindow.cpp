@@ -19,13 +19,13 @@
 #include <QImage>
 #include <qrcodegen.hpp>
 #include <QDebug>
-
+#include <QSqlTableModel>
+#include "AddAdminDialog.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
     // Connect signals to slots
     connect(ui->generateQRCodeButton, &QPushButton::clicked, this, [this]() {
         this->generateQRCodeFromLocataire();
@@ -39,6 +39,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->sortButton, &QPushButton::clicked, this, &MainWindow::onSort);
     connect(ui->searchButton, &QPushButton::clicked, this, &MainWindow::rechercherParId);
     connect(ui->joursRestantsButton, &QPushButton::clicked, this, &MainWindow::calculerEtAfficherJoursRestants);
+    connect(ui->addAdminButton, &QPushButton::clicked, this, &MainWindow::openAddAdminDialog);
+
 }
 
 MainWindow::~MainWindow()
@@ -63,18 +65,25 @@ void MainWindow::onInsert()
         QMessageBox::warning(this, "Erreur", "Ajout échoué !");
     }
 }
-
 void MainWindow::onRead()
 {
-    int id = ui->idInput->text().toInt();
-    QString type = ui->typeInput->text();
-    QString dateE = ui->dateEntInput->text();
-    QString statut = ui->statPayInput->currentText();
-    QString nom = ui->nomInput->text();
-    QString dateS = ui->dateSortieInput->text();
+    Loca l;
+    QSqlTableModel* model = l.afficher();
 
-    Loca l(id, type, dateE, statut, nom, dateS);
-    ui->tableView->setModel(l.afficher());
+    if (model) {
+        ui->tableView->setModel(model);
+
+        // Active et ajuste les entêtes
+        ui->tableView->horizontalHeader()->setVisible(true);
+        ui->tableView->horizontalHeader()->setStretchLastSection(true);
+        ui->tableView->resizeColumnsToContents();
+
+        // Affichage plus clair
+        ui->tableView->setAlternatingRowColors(true);
+        ui->tableView->setShowGrid(true);
+    } else {
+        QMessageBox::warning(this, "Erreur", "Aucune donnée à afficher.");
+    }
 }
 
 void MainWindow::onUpdate()
@@ -308,3 +317,9 @@ void MainWindow::generateQRCodeFromLocataire()
         }
     }
 }
+void MainWindow::openAddAdminDialog()
+{
+    AddAdminDialog dialog(this);  // Utilise la vraie classe
+    dialog.exec();  // Affiche le vrai formulaire conçu
+}
+

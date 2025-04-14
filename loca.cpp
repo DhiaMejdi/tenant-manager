@@ -43,17 +43,24 @@ bool Loca::ajouter() {
         return false;  // Requête échouée
     }
 }
+QSqlTableModel* Loca::afficher()
+{
+    QSqlTableModel* model = new QSqlTableModel();
+    model->setTable("LOCATAIRE");                     // Nom exact de ta table
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    model->select();                                  // Charge les données
 
-// Méthode pour afficher tous les locataires
-QSqlQueryModel* Loca::afficher() {
-    QSqlQueryModel* model = new QSqlQueryModel();
-    QSqlQuery query;
-    query.prepare("SELECT * FROM LOCATAIRE");
-    query.exec();
-    model->setQuery(query);
+    // Vérifie l'ordre réel des colonnes dans ta base !
+    // Puis définis des noms jolis pour les en-têtes :
+    model->setHeaderData(0, Qt::Horizontal, "ID");
+    model->setHeaderData(1, Qt::Horizontal, "Nom");
+    model->setHeaderData(2, Qt::Horizontal, "Type");
+    model->setHeaderData(3, Qt::Horizontal, "Date d'entrée");
+    model->setHeaderData(4, Qt::Horizontal, "Statut de paiement");
+    model->setHeaderData(5, Qt::Horizontal, "Date de sortie");
+
     return model;
 }
-
 // Méthode pour modifier les informations d'un locataire
 bool Loca::modifier(int id) {
     QSqlQuery query;

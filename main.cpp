@@ -5,22 +5,23 @@
 #include "connection.h"
 #include <QDebug>
 #include "logger.h"
+#include "addadmindialog.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    QFile file(":styles/stylesheet.qss");  // Assurez-vous de placer le fichier .qss dans un répertoire adapté
+    if (file.open(QFile::ReadOnly)) {
+        QString style = file.readAll();
+        a.setStyleSheet(style);
+    }
     Connection c;
     logToFile("🟢 Application started");
     // Vérifier la connexion à la base
     if (!c.createconnect()) {
-        QMessageBox::critical(nullptr, QObject::tr("Database Error"),
-                              QObject::tr("Connection failed! Check your settings."), QMessageBox::Cancel);
         qDebug() << "❌ Échec de la connexion à la base de données.";
         return -1;
     }
-
-    QMessageBox::information(nullptr, QObject::tr("Database Status"),
-                             QObject::tr("Connection successful!"), QMessageBox::Ok);
             logToFile("🟢 connected to database");
     qDebug() << "✅ Connexion à la base de données réussie.";
 

@@ -40,7 +40,6 @@ public:
     QPushButton *pushButton_6;
     QPushButton *pushButton;
     QLabel *label_6;
-    QPushButton *pushButton_9;
     QPushButton *pushButton_11;
     QPushButton *exportButton;
     QGroupBox *groupBox;
@@ -60,11 +59,9 @@ public:
     QComboBox *statPayInput;
     QDateEdit *dateSortieInput;
     QPushButton *updateButton;
-    QPushButton *generateQRCodeButton;
     QPushButton *deleteButton;
     QTableView *tableView;
     QLineEdit *LineEdit_id_supprimer;
-    QLabel *label_30;
     QPushButton *readButton;
     QPushButton *displayStatsButton;
     QPushButton *sortButton;
@@ -72,6 +69,13 @@ public:
     QPushButton *searchButton;
     QPushButton *joursRestantsButton;
     QLabel *qrCodeLabel;
+    QPushButton *generateQRCodeButton;
+    QGroupBox *groupBox_2;
+    QPushButton *insertButton_3;
+    QPushButton *pushButton_annuler_3;
+    QPushButton *updateButton_3;
+    QLabel *label_30;
+    QPushButton *addAdminButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -84,9 +88,170 @@ public:
         centralwidget->setObjectName("centralwidget");
         widget = new QWidget(centralwidget);
         widget->setObjectName("widget");
-        widget->setGeometry(QRect(-30, 0, 2381, 1301));
-        widget->setStyleSheet(QString::fromUtf8("background-color: #1D1D1D;\n"
-""));
+        widget->setGeometry(QRect(-210, -10, 1761, 1231));
+        widget->setStyleSheet(QString::fromUtf8("/* General QWidget styling with animated background */\n"
+"QWidget {\n"
+"    background: linear-gradient(45deg, #6A4CFC, #9C6EFC);\n"
+"    background-size: 400% 400%; /* Large background size for animation */\n"
+"    animation: gradientAnimation 15s ease infinite; /* Apply the animation */\n"
+"    color: #FFF; /* White text */\n"
+"    border-radius: 15px; /* Rounded corners */\n"
+"    padding: 20px;\n"
+"    font-family: 'Roboto', sans-serif;\n"
+"    font-size: 14px;\n"
+"    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */\n"
+"}\n"
+"\n"
+"/* Background gradient animation keyframes */\n"
+"@keyframes gradientAnimation {\n"
+"    0% {\n"
+"        background-position: 0% 50%; /* Start from the left */\n"
+"    }\n"
+"    50% {\n"
+"        background-position: 100% 50%; /* Move to the right */\n"
+"    }\n"
+"    100% {\n"
+"        background-position: 0% 50%; /* Return to the start */\n"
+"    }\n"
+"}\n"
+"\n"
+"/* Hover effect for QWidget */\n"
+"QWidget:hover {\n"
+"    background: #5A2D84; /* Lig"
+                        "hter purple when hovering */\n"
+"}\n"
+"\n"
+"/* QLabel Styling */\n"
+"QLabel {\n"
+"    color: #E2B0FF; /* Light purple text for a futuristic feel */\n"
+"    font-size: 16px;\n"
+"    font-weight: bold;\n"
+"    margin-bottom: 15px;\n"
+"    text-shadow: 0 0 8px rgba(226, 176, 255, 0.6); /* Soft purple glow */\n"
+"}\n"
+"\n"
+"/* QPushButton with smooth hover effect */\n"
+"QPushButton {\n"
+"    background: linear-gradient(45deg, #6A4CFC, #9C6EFC); /* Purple gradient button */\n"
+"    border: 2px solid #9C6EFC; /* Soft border with light purple */\n"
+"    color: #FFF; /* White text */\n"
+"    border-radius: 12px;\n"
+"    padding: 12px 30px;\n"
+"    font-size: 16px;\n"
+"    font-weight: bold;\n"
+"    text-transform: uppercase;\n"
+"    transition: all 0.3s ease-in-out;\n"
+"    box-shadow: 0 0 15px rgba(106, 76, 252, 0.6); /* Subtle glowing effect */\n"
+"}\n"
+"\n"
+"/* Hover effect for QPushButton */\n"
+"QPushButton:hover {\n"
+"    background: linear-gradient(45deg, #9C6EFC, #6A4CFC); /* Reverse gradient for hover */\n"
+" "
+                        "   border-color: #6A4CFC;\n"
+"    box-shadow: 0 0 20px rgba(106, 76, 252, 0.8); /* Stronger glow on hover */\n"
+"    transform: scale(1.05); /* Slight scale-up for hover effect */\n"
+"}\n"
+"\n"
+"/* Pressed effect for QPushButton */\n"
+"QPushButton:pressed {\n"
+"    background: #6A4CFC; /* Dark purple when pressed */\n"
+"    box-shadow: 0 0 10px rgba(106, 76, 252, 0.8); /* Still glowing effect */\n"
+"    transform: scale(0.98); /* Slight scale-down */\n"
+"}\n"
+"\n"
+"/* QLineEdit with purple border focus */\n"
+"QLineEdit {\n"
+"    background-color: #3A1D6A; /* Dark purple background */\n"
+"    border: 2px solid #6A4CFC;\n"
+"    color: #FFF; /* White text */\n"
+"    border-radius: 8px;\n"
+"    padding: 12px;\n"
+"    font-size: 14px;\n"
+"    transition: all 0.3s ease;\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border-color: #9C6EFC; /* Lighter purple when focused */\n"
+"    box-shadow: 0 0 10px rgba(156, 110, 252, 0.7); /* Soft purple glow */\n"
+"}\n"
+"\n"
+"/* QComboBox */\n"
+"QComboBox {\n"
+"    background-color: #"
+                        "3A1D6A; /* Dark purple background */\n"
+"    border: 2px solid #6A4CFC;\n"
+"    color: #FFF;\n"
+"    border-radius: 8px;\n"
+"    padding: 6px;\n"
+"    font-size: 14px;\n"
+"    transition: all 0.3s ease;\n"
+"}\n"
+"\n"
+"QComboBox:hover {\n"
+"    border-color: #9C6EFC; /* Lighter border color on hover */\n"
+"}\n"
+"\n"
+"QComboBox:focus {\n"
+"    border-color: #9C6EFC;\n"
+"    box-shadow: 0 0 10px rgba(156, 110, 252, 0.7); /* Focus effect with purple glow */\n"
+"}\n"
+"\n"
+"/* QTableView with purple and neon accents */\n"
+"\n"
+"\n"
+"QHeaderView::section {\n"
+"    background-color: #6A4CFC; /* Purple header background */\n"
+"    color: #FFF;\n"
+"    font-size: 16px;\n"
+"    font-weight: bold;\n"
+"    padding: 10px;\n"
+"    border: 1px solid #6A4CFC; /* Dark purple border for headers */\n"
+"    border-radius: 5px;\n"
+"    text-align: center;\n"
+"}\n"
+"/* Hover effect for table rows */\n"
+"QTableView::item:hover {\n"
+"    background-color: #9C6EFC; /* Lighter purple when hovering over a row */\n"
+"    color: #181818; /"
+                        "* Darker text when hovered */\n"
+"}\n"
+"\n"
+"\n"
+"\n"
+"/* Scrollbar design with a futuristic purple look */\n"
+"QScrollBar:vertical, QScrollBar:horizontal {\n"
+"    background: #2E1A47; /* Dark background for scrollbar */\n"
+"    width: 12px;\n"
+"    border-radius: 8px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical, QScrollBar::handle:horizontal {\n"
+"    background: #6A4CFC; /* Purple scrollbar handle */\n"
+"    border-radius: 6px;\n"
+"}\n"
+"\n"
+"QScrollBar::handle:vertical:hover, QScrollBar::handle:horizontal:hover {\n"
+"    background: #9C6EFC; /* Lighter purple on hover */\n"
+"}\n"
+"\n"
+"/* QLabel for displaying the QR code or any other label */\n"
+"QLabel {\n"
+"    color: #E2B0FF; /* Light purple text */\n"
+"    font-size: 18px;\n"
+"    font-weight: bold;\n"
+"    text-shadow: 0 0 10px rgba(226, 176, 255, 0.6); /* Glowing effect */\n"
+"}\n"
+"QTableView {\n"
+"    background-color: #2E1A47; /* Dark background for the table */\n"
+"    border: 2px solid #6A4CFC; /* Dark purple border around the table */\n"
+"    c"
+                        "olor: #FFF; /* White text */\n"
+"    font-size: 14px;\n"
+"    font-family: 'Roboto', sans-serif;\n"
+"    border-radius: 10px;\n"
+"    alternate-background-color: #3A1D6A; /* Slightly lighter alternate rows */\n"
+"}"));
         widget_2 = new QWidget(widget);
         widget_2->setObjectName("widget_2");
         widget_2->setGeometry(QRect(20, -10, 251, 1251));
@@ -321,18 +486,9 @@ public:
         label_6->setObjectName("label_6");
         label_6->setGeometry(QRect(20, 40, 81, 81));
         label_6->setPixmap(QPixmap(QString::fromUtf8("../../../Downloads/logoc++1.png")));
-        pushButton_9 = new QPushButton(widget);
-        pushButton_9->setObjectName("pushButton_9");
-        pushButton_9->setGeometry(QRect(990, 120, 181, 31));
-        pushButton_9->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
-"    color: white;\n"
-"    border-radius: 8px;\n"
-"    padding: 10px 15px;\n"
-"    font-size: 14px;\n"
-"    font-weight: bold;"));
         pushButton_11 = new QPushButton(widget);
         pushButton_11->setObjectName("pushButton_11");
-        pushButton_11->setGeometry(QRect(680, 20, 801, 141));
+        pushButton_11->setGeometry(QRect(650, 20, 801, 141));
         pushButton_11->setStyleSheet(QString::fromUtf8("background-color: #8A4FFF;\n"
 "    color: white;\n"
 "    border-radius: 8px;\n"
@@ -341,7 +497,7 @@ public:
 "    font-weight: bold;"));
         exportButton = new QPushButton(widget);
         exportButton->setObjectName("exportButton");
-        exportButton->setGeometry(QRect(1380, 620, 161, 51));
+        exportButton->setGeometry(QRect(1410, 620, 191, 51));
         exportButton->setStyleSheet(QString::fromUtf8("background-color:  #444444;\n"
 "    color: white;\n"
 "    border: 2px solid #8A2BE2;\n"
@@ -352,7 +508,7 @@ public:
 "  "));
         groupBox = new QGroupBox(widget);
         groupBox->setObjectName("groupBox");
-        groupBox->setGeometry(QRect(290, 80, 311, 621));
+        groupBox->setGeometry(QRect(290, 80, 341, 621));
         groupBox->setMouseTracking(true);
         groupBox->setTabletTracking(true);
         groupBox->setStyleSheet(QString::fromUtf8("background-color: #2C2C2C;\n"
@@ -381,7 +537,7 @@ public:
 ""));
         label_20 = new QLabel(groupBox);
         label_20->setObjectName("label_20");
-        label_20->setGeometry(QRect(0, 90, 141, 64));
+        label_20->setGeometry(QRect(-10, 90, 141, 64));
         label_20->setStyleSheet(QString::fromUtf8("font-size: 14px;\n"
 "    font-weight: bold;\n"
 "    color: #FFFFFF;"));
@@ -405,13 +561,13 @@ public:
 "    color: #FFFFFF;"));
         label_26 = new QLabel(groupBox);
         label_26->setObjectName("label_26");
-        label_26->setGeometry(QRect(-10, 320, 151, 64));
+        label_26->setGeometry(QRect(0, 330, 151, 64));
         label_26->setStyleSheet(QString::fromUtf8("font-size: 14px;\n"
 "    font-weight: bold;\n"
 "    color: #FFFFFF;"));
         insertButton = new QPushButton(groupBox);
         insertButton->setObjectName("insertButton");
-        insertButton->setGeometry(QRect(120, 570, 84, 39));
+        insertButton->setGeometry(QRect(110, 570, 101, 39));
         insertButton->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
 "    color: white;\n"
 "    border-radius: 8px;\n"
@@ -420,7 +576,7 @@ public:
 "    font-weight: bold;"));
         pushButton_annuler = new QPushButton(groupBox);
         pushButton_annuler->setObjectName("pushButton_annuler");
-        pushButton_annuler->setGeometry(QRect(210, 570, 82, 39));
+        pushButton_annuler->setGeometry(QRect(220, 570, 111, 39));
         pushButton_annuler->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
 "    color: white;\n"
 "    border-radius: 8px;\n"
@@ -429,7 +585,7 @@ public:
 "    font-weight: bold;"));
         label_28 = new QLabel(groupBox);
         label_28->setObjectName("label_28");
-        label_28->setGeometry(QRect(0, 20, 228, 61));
+        label_28->setGeometry(QRect(0, 20, 241, 61));
         label_28->setStyleSheet(QString::fromUtf8(" font-size: 20px;\n"
 "    font-weight: bold;\n"
 "    color: #8B008B;\n"
@@ -447,96 +603,183 @@ public:
 ""));
         label_29 = new QLabel(groupBox);
         label_29->setObjectName("label_29");
-        label_29->setGeometry(QRect(-10, 390, 121, 51));
+        label_29->setGeometry(QRect(0, 400, 121, 51));
         label_29->setStyleSheet(QString::fromUtf8("font-size: 14px;\n"
 "    font-weight: bold;\n"
 "    color: #FFFFFF;"));
         dateEntInput = new QDateEdit(groupBox);
         dateEntInput->setObjectName("dateEntInput");
-        dateEntInput->setGeometry(QRect(150, 220, 151, 41));
-        dateEntInput->setStyleSheet(QString::fromUtf8("QDateEdit {\n"
-"    background-color: #f0f0f0;   /* Light grey background for input */\n"
-"    border: 2px solid #76c7c0;    /* Teal border around the input */\n"
-"    border-radius: 5px;           /* Rounded corners */\n"
-"    padding: 5px 10px;            /* Padding inside the input field */\n"
-"    font-size: 16px;              /* Font size of the text */\n"
-"    color: #333;                  /* Text color */\n"
+        dateEntInput->setGeometry(QRect(140, 220, 161, 41));
+        dateEntInput->setStyleSheet(QString::fromUtf8("/* Style for QDateEdit with Purple Gradient */\n"
+"QDateEdit {\n"
+"    border: 2px solid #9C27B0;  /* Purple border */\n"
+"    border-radius: 10px;  /* Rounded corners */\n"
+"    padding: 5px 10px;  /* Padding inside the input box */\n"
+"    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #9C27B0, stop:1 #673AB7);  /* Gradient from light purple to dark purple */\n"
+"    color: white;  /* White text color */\n"
+"    font-size: 14px;  /* Font size for the date */\n"
+"    selection-background-color: #D500F9;  /* Bright purple highlight when text is selected */\n"
 "}\n"
 "\n"
-"QDateEdit:hover {\n"
-"    border: 2px solid #45a049;    /* Darker border on hover */\n"
+"/* Style for the date popup calendar (if used) */\n"
+"QCalendarWidget {\n"
+"    background-color: #673AB7;  /* Dark purple background for the calendar */\n"
+"    border: 1px solid #9C27B0;  /* Lighter purple border for the calendar */\n"
+"    border-radius: 10px;  /* Rounded corners for the calendar */\n"
 "}\n"
 "\n"
-"QDateEdit:focus {\n"
-"    border: 2px solid #008CBA;    /* Blue border when focused */\n"
-"    background-color: #e0f7fa;    /* Light blue background when focused */\n"
+"QCalendarWidget QToolButton {\n"
+"    background-color: #9C27B0;  /* Purple background for calendar butt"
+                        "ons */\n"
+"    color: white;  /* White text for buttons */\n"
+"    border-radius: 5px;  /* Rounded corners for the buttons */\n"
+"}\n"
+"\n"
+"QCalendarWidget QToolButton:hover {\n"
+"    background-color: #7B1FA2;  /* Darker purple when hovering */\n"
+"}\n"
+"\n"
+"/* Style for the calendar date cells */\n"
+"QCalendarWidget QAbstractItemView:enabled {\n"
+"    color: white;  /* White text color for the dates */\n"
+"    background-color: #9C27B0;  /* Light purple background for date cells */\n"
+"}\n"
+"\n"
+"QCalendarWidget QAbstractItemView:selected {\n"
+"    background-color: #D500F9;  /* Bright purple background for selected date */\n"
+"    color: white;  /* White text when selected */\n"
+"}\n"
+"\n"
+"QCalendarWidget QAbstractItemView:disabled {\n"
+"    color: #B39DDB;  /* Light grey text for disabled cells */\n"
+"    background-color: #673AB7;  /* Dark purple for disabled cells */\n"
 "}\n"
 ""));
         statPayInput = new QComboBox(groupBox);
         statPayInput->addItem(QString());
         statPayInput->addItem(QString());
         statPayInput->setObjectName("statPayInput");
-        statPayInput->setGeometry(QRect(151, 270, 151, 41));
-        statPayInput->setStyleSheet(QString::fromUtf8("QComboBox {\n"
-"    background-color: #f0f0f0; /* Light gray background for the input field */\n"
-"    border: 2px solid #76c7c0;  /* Green border around the input field */\n"
-"    border-radius: 5px;         /* Rounded corners */\n"
-"    padding: 5px 10px;          /* Padding inside the input field */\n"
-"    font-size: 16px;            /* Font size of the text */\n"
-"    color: #333;                /* Text color */\n"
+        statPayInput->setGeometry(QRect(140, 270, 161, 41));
+        statPayInput->setStyleSheet(QString::fromUtf8("/* General QComboBox styling */\n"
+"QComboBox {\n"
+"    background-color: #5E35B1;  /* Dark purple background */\n"
+"    color: white;  /* White text color */\n"
+"    border: 1px solid #8E24AA;  /* Lighter purple border */\n"
+"    border-radius: 12px;  /* Rounded corners */\n"
+"    padding: 8px;  /* Padding inside the combo box */\n"
+"    font-size: 16px;  /* Set the font size */\n"
 "}\n"
 "\n"
-"QComboBox:hover {\n"
-"    border: 2px solid #45a049;  /* Darker green on hover */\n"
-"}\n"
-"\n"
+"/* QComboBox when it is focused (when clicked or selected) */\n"
 "QComboBox:focus {\n"
-"    border: 2px solid #008CBA;  /* Blue border when focused */\n"
-"    background-color: #e0f7fa;  /* Light blue background when focused */\n"
+"    border: 1px solid #9C27B0;  /* Purple color when focused */\n"
+"    background-color: #7E57C2;  /* Lighter purple background when focused */\n"
+"}\n"
+"\n"
+"/* QComboBox drop-down button (the arrow) */\n"
+"QComboBox::drop-down {\n"
+"    border: none;  /* Remove the border */\n"
+"    background-color: transparent;  /* Transparent background */\n"
+"    width: 30px;  /* Set width for the drop-down button */\n"
+"}\n"
+"\n"
+"/* QComboBox button when hovered */\n"
+"QComboBox::drop-down:hover {\n"
+"    background-color: #AB47BC;  /* Sligh"
+                        "tly brighter purple for hover effect */\n"
+"}\n"
+"\n"
+"/* The combo box popup (the list) */\n"
+"QListView {\n"
+"    background-color: #7E57C2;  /* Lighter purple for the dropdown list */\n"
+"    color: white;  /* White text in the list */\n"
+"    border-radius: 8px;  /* Rounded corners for the dropdown list */\n"
+"}\n"
+"\n"
+"/* When an item in the dropdown list is hovered */\n"
+"QListView::item:hover {\n"
+"    background-color: #9C27B0;  /* Lighter purple for hovered item */\n"
+"    border-radius: 8px;  /* Rounded corners for hovered item */\n"
+"}\n"
+"\n"
+"/* Style for the selected item in the dropdown list */\n"
+"QListView::item:selected {\n"
+"    background-color: #AB47BC;  /* Even brighter purple for selected item */\n"
+"}\n"
+"\n"
+"/* Disabled state for the combo box */\n"
+"QComboBox:disabled {\n"
+"    background-color: #B39DDB;  /* Lighter background when disabled */\n"
+"    border: 1px solid #D1C4E9;  /* Light border when disabled */\n"
+"    color: #9E9E9E;  /* Light gray text when disabled */\n"
+"}\n"
+"\n"
+""
+                        "/* Optional: smooth transition for combo box focus effect */\n"
+"QComboBox {\n"
+"    transition: background-color 0.3s ease, border-color 0.3s ease;\n"
 "}\n"
 ""));
         dateSortieInput = new QDateEdit(groupBox);
         dateSortieInput->setObjectName("dateSortieInput");
-        dateSortieInput->setGeometry(QRect(130, 400, 171, 41));
-        dateSortieInput->setStyleSheet(QString::fromUtf8("QDateEdit {\n"
-"    background-color: #f0f0f0;   /* Light grey background for input */\n"
-"    border: 2px solid #76c7c0;    /* Teal border around the input */\n"
-"    border-radius: 5px;           /* Rounded corners */\n"
-"    padding: 5px 10px;            /* Padding inside the input field */\n"
-"    font-size: 16px;              /* Font size of the text */\n"
-"    color: #333;                  /* Text color */\n"
+        dateSortieInput->setGeometry(QRect(140, 400, 161, 41));
+        dateSortieInput->setStyleSheet(QString::fromUtf8("/* Style for QDateEdit with Purple Gradient */\n"
+"QDateEdit {\n"
+"    border: 2px solid #9C27B0;  /* Purple border */\n"
+"    border-radius: 10px;  /* Rounded corners */\n"
+"    padding: 5px 10px;  /* Padding inside the input box */\n"
+"    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #9C27B0, stop:1 #673AB7);  /* Gradient from light purple to dark purple */\n"
+"    color: white;  /* White text color */\n"
+"    font-size: 14px;  /* Font size for the date */\n"
+"    selection-background-color: #D500F9;  /* Bright purple highlight when text is selected */\n"
 "}\n"
 "\n"
-"QDateEdit:hover {\n"
-"    border: 2px solid #45a049;    /* Darker border on hover */\n"
+"/* Style for the date popup calendar (if used) */\n"
+"QCalendarWidget {\n"
+"    background-color: #673AB7;  /* Dark purple background for the calendar */\n"
+"    border: 1px solid #9C27B0;  /* Lighter purple border for the calendar */\n"
+"    border-radius: 10px;  /* Rounded corners for the calendar */\n"
 "}\n"
 "\n"
-"QDateEdit:focus {\n"
-"    border: 2px solid #008CBA;    /* Blue border when focused */\n"
-"    background-color: #e0f7fa;    /* Light blue background when focused */\n"
+"QCalendarWidget QToolButton {\n"
+"    background-color: #9C27B0;  /* Purple background for calendar butt"
+                        "ons */\n"
+"    color: white;  /* White text for buttons */\n"
+"    border-radius: 5px;  /* Rounded corners for the buttons */\n"
+"}\n"
+"\n"
+"QCalendarWidget QToolButton:hover {\n"
+"    background-color: #7B1FA2;  /* Darker purple when hovering */\n"
+"}\n"
+"\n"
+"/* Style for the calendar date cells */\n"
+"QCalendarWidget QAbstractItemView:enabled {\n"
+"    color: white;  /* White text color for the dates */\n"
+"    background-color: #9C27B0;  /* Light purple background for date cells */\n"
+"}\n"
+"\n"
+"QCalendarWidget QAbstractItemView:selected {\n"
+"    background-color: #D500F9;  /* Bright purple background for selected date */\n"
+"    color: white;  /* White text when selected */\n"
+"}\n"
+"\n"
+"QCalendarWidget QAbstractItemView:disabled {\n"
+"    color: #B39DDB;  /* Light grey text for disabled cells */\n"
+"    background-color: #673AB7;  /* Dark purple for disabled cells */\n"
 "}\n"
 ""));
         updateButton = new QPushButton(groupBox);
         updateButton->setObjectName("updateButton");
-        updateButton->setGeometry(QRect(10, 570, 101, 39));
+        updateButton->setGeometry(QRect(10, 570, 91, 39));
         updateButton->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
 "    color: white;\n"
 "    border-radius: 8px;\n"
 "    padding: 10px 15px;\n"
-"    font-size: 14px;\n"
-"    font-weight: bold;"));
-        generateQRCodeButton = new QPushButton(groupBox);
-        generateQRCodeButton->setObjectName("generateQRCodeButton");
-        generateQRCodeButton->setGeometry(QRect(130, 510, 84, 39));
-        generateQRCodeButton->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
-"    color: white;\n"
-"    border-radius: 8px;\n"
-"    padding: 10px 15px;\n"
-"    font-size: 14px;\n"
+"    font-size: 12px;\n"
 "    font-weight: bold;"));
         deleteButton = new QPushButton(widget);
         deleteButton->setObjectName("deleteButton");
-        deleteButton->setGeometry(QRect(870, 660, 101, 39));
+        deleteButton->setGeometry(QRect(810, 660, 141, 39));
         deleteButton->setStyleSheet(QString::fromUtf8("background-color: #8B008B;\n"
 "    color: white;\n"
 "    border-radius: 8px;\n"
@@ -545,23 +788,18 @@ public:
 "    font-weight: bold;"));
         tableView = new QTableView(widget);
         tableView->setObjectName("tableView");
-        tableView->setGeometry(QRect(640, 380, 961, 231));
-        tableView->setStyleSheet(QString::fromUtf8("QTableView {\n"
-"     background-color: #bba4ff;\n"
-"     padding: 10px;\n"
-"    border: 1px solid   #FFFFFF; /* Bordure des cellules */\n"
+        tableView->setGeometry(QRect(640, 380, 1031, 231));
+        tableView->setStyleSheet(QString::fromUtf8("QHeaderView::section {\n"
+"    background-color: #6A4CFC;\n"
+"    color: white;\n"
+"    font-weight: bold;\n"
 "}\n"
-"\n"
-"QHeaderView::section {\n"
-" background-color: #418dff; /* Fond gris fonc\303\251 pour la table */\n"
-"    color: #FFFFFF; /* Texte en blanc */\n"
-"    border: 1px solid  #8A2BE2; /* Bordure de la table */\n"
-"}"));
+""));
         tableView->setShowGrid(true);
         tableView->setGridStyle(Qt::PenStyle::DotLine);
         LineEdit_id_supprimer = new QLineEdit(widget);
         LineEdit_id_supprimer->setObjectName("LineEdit_id_supprimer");
-        LineEdit_id_supprimer->setGeometry(QRect(700, 660, 160, 41));
+        LineEdit_id_supprimer->setGeometry(QRect(640, 660, 160, 41));
         LineEdit_id_supprimer->setStyleSheet(QString::fromUtf8("background-color:  #444444;\n"
 "    color:  #2C2C2C;\n"
 "    border: 2px solid #8A2BE2;\n"
@@ -569,16 +807,9 @@ public:
 "    padding: 10px 15px;\n"
 "    font-size: 15px;\n"
 "  "));
-        label_30 = new QLabel(widget);
-        label_30->setObjectName("label_30");
-        label_30->setGeometry(QRect(630, 320, 228, 51));
-        label_30->setStyleSheet(QString::fromUtf8(" font-size: 20px;\n"
-"    font-weight: bold;\n"
-"    color: #8B008B;\n"
-"    padding: 10px;"));
         readButton = new QPushButton(widget);
         readButton->setObjectName("readButton");
-        readButton->setGeometry(QRect(1030, 620, 211, 51));
+        readButton->setGeometry(QRect(1000, 620, 251, 51));
         readButton->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
 "    color: white;\n"
 "    border-radius: 8px;\n"
@@ -624,7 +855,7 @@ public:
 "    font-weight: bold;"));
         joursRestantsButton = new QPushButton(widget);
         joursRestantsButton->setObjectName("joursRestantsButton");
-        joursRestantsButton->setGeometry(QRect(1010, 330, 221, 41));
+        joursRestantsButton->setGeometry(QRect(980, 330, 251, 41));
         joursRestantsButton->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
 "    color: white;\n"
 "    border-radius: 8px;\n"
@@ -633,16 +864,103 @@ public:
 "    font-weight: bold;"));
         qrCodeLabel = new QLabel(widget);
         qrCodeLabel->setObjectName("qrCodeLabel");
-        qrCodeLabel->setGeometry(QRect(660, 180, 161, 141));
+        qrCodeLabel->setGeometry(QRect(1460, 10, 184, 199));
+        qrCodeLabel->setStyleSheet(QString::fromUtf8("/* Styling for the QR Code label */\n"
+"QLabel#qrCodeLabel {\n"
+"    background: linear-gradient(135deg, #9C27B0, #7C4DFF); /* Purple gradient */\n"
+"    border-radius: 15px;  /* Rounded corners for the label */\n"
+"    padding: 10px;  /* Padding inside the label to prevent content from touching edges */\n"
+"    border: 2px solid #8E24AA; /* Lighter purple border around the label */\n"
+"    min-width: 160px;  /* Ensure label has a minimum width */\n"
+"    min-height: 160px;  /* Ensure label has a minimum height */\n"
+"    display: flex;\n"
+"    justify-content: center;\n"
+"    align-items: center;\n"
+"}\n"
+"\n"
+"/* When the label is hovered over (optional, for interactivity) */\n"
+"QLabel#qrCodeLabel:hover {\n"
+"    background: linear-gradient(135deg, #7C4DFF, #9C27B0); /* Reverse the gradient on hover */\n"
+"    border: 2px solid #AB47BC; /* Brighter border when hovered */\n"
+"}\n"
+"\n"
+"/* When the label is focused (optional, if applicable) */\n"
+"QLabel#qrCodeLabel:focus {\n"
+"    border: 2px solid #AB47BC;"
+                        "  /* Bright purple border when focused */\n"
+"}\n"
+"\n"
+"/* Styling for the text inside the label (optional, in case you want to show text) */\n"
+"QLabel#qrCodeLabel:empty {\n"
+"    color: #FFFFFF;  /* White text when label is empty (if*\n"
+""));
+        generateQRCodeButton = new QPushButton(widget);
+        generateQRCodeButton->setObjectName("generateQRCodeButton");
+        generateQRCodeButton->setGeometry(QRect(1510, 200, 84, 39));
+        generateQRCodeButton->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
+"    color: white;\n"
+"    border-radius: 8px;\n"
+"    padding: 10px 15px;\n"
+"    font-size: 14px;\n"
+"    font-weight: bold;"));
+        groupBox_2 = new QGroupBox(widget);
+        groupBox_2->setObjectName("groupBox_2");
+        groupBox_2->setGeometry(QRect(640, 330, 241, 41));
+        groupBox_2->setMouseTracking(true);
+        groupBox_2->setTabletTracking(true);
+        groupBox_2->setStyleSheet(QString::fromUtf8("background-color: #2C2C2C;\n"
+"padding: 10px;\n"
+"border-radius: 10px;"));
+        insertButton_3 = new QPushButton(groupBox_2);
+        insertButton_3->setObjectName("insertButton_3");
+        insertButton_3->setGeometry(QRect(120, 570, 84, 39));
+        insertButton_3->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
+"    color: white;\n"
+"    border-radius: 8px;\n"
+"    padding: 10px 15px;\n"
+"    font-size: 14px;\n"
+"    font-weight: bold;"));
+        pushButton_annuler_3 = new QPushButton(groupBox_2);
+        pushButton_annuler_3->setObjectName("pushButton_annuler_3");
+        pushButton_annuler_3->setGeometry(QRect(210, 570, 82, 39));
+        pushButton_annuler_3->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
+"    color: white;\n"
+"    border-radius: 8px;\n"
+"    padding: 10px 15px;\n"
+"    font-size: 14px;\n"
+"    font-weight: bold;"));
+        updateButton_3 = new QPushButton(groupBox_2);
+        updateButton_3->setObjectName("updateButton_3");
+        updateButton_3->setGeometry(QRect(10, 570, 101, 39));
+        updateButton_3->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
+"    color: white;\n"
+"    border-radius: 8px;\n"
+"    padding: 10px 15px;\n"
+"    font-size: 14px;\n"
+"    font-weight: bold;"));
+        label_30 = new QLabel(groupBox_2);
+        label_30->setObjectName("label_30");
+        label_30->setGeometry(QRect(0, 0, 241, 51));
+        label_30->setStyleSheet(QString::fromUtf8(" font-size: 20px;\n"
+"    font-weight: bold;\n"
+"    color: #8B008B;\n"
+"    padding: 10px;"));
+        addAdminButton = new QPushButton(widget);
+        addAdminButton->setObjectName("addAdminButton");
+        addAdminButton->setGeometry(QRect(1630, 680, 121, 31));
+        addAdminButton->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
+"    color: white;\n"
+"    border-radius: 8px;\n"
+"    padding: 10px 15px;\n"
+"    font-size: 8px;\n"
+"    font-weight: bold;"));
         pushButton_11->raise();
         widget_2->raise();
-        pushButton_9->raise();
         exportButton->raise();
         groupBox->raise();
         deleteButton->raise();
         tableView->raise();
         LineEdit_id_supprimer->raise();
-        label_30->raise();
         readButton->raise();
         displayStatsButton->raise();
         sortButton->raise();
@@ -650,6 +968,9 @@ public:
         searchButton->raise();
         joursRestantsButton->raise();
         qrCodeLabel->raise();
+        generateQRCodeButton->raise();
+        groupBox_2->raise();
+        addAdminButton->raise();
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -677,7 +998,6 @@ public:
         pushButton_6->setText(QCoreApplication::translate("MainWindow", "\360\237\232\266\342\200\215\342\231\202\357\270\217 Visiteurs", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "\360\237\221\251\342\200\215\360\237\222\274 Employ\303\251s", nullptr));
         label_6->setText(QString());
-        pushButton_9->setText(QCoreApplication::translate("MainWindow", "Get started", nullptr));
         pushButton_11->setText(QCoreApplication::translate("MainWindow", "Welcome to CenterFlow", nullptr));
         exportButton->setText(QCoreApplication::translate("MainWindow", "exporter en PDF", nullptr));
         groupBox->setTitle(QString());
@@ -696,16 +1016,21 @@ public:
         statPayInput->setItemText(1, QCoreApplication::translate("MainWindow", "Non Pay\303\251", nullptr));
 
         updateButton->setText(QCoreApplication::translate("MainWindow", "Modifier", nullptr));
-        generateQRCodeButton->setText(QCoreApplication::translate("MainWindow", "QR", nullptr));
         deleteButton->setText(QCoreApplication::translate("MainWindow", "Supprimer", nullptr));
-        label_30->setText(QCoreApplication::translate("MainWindow", "Listes des Locataires", nullptr));
         readButton->setText(QCoreApplication::translate("MainWindow", "afficher les locataires", nullptr));
         displayStatsButton->setText(QCoreApplication::translate("MainWindow", "statistiques", nullptr));
         sortButton->setText(QCoreApplication::translate("MainWindow", "Trie", nullptr));
         idSearchInput->setText(QString());
         searchButton->setText(QCoreApplication::translate("MainWindow", "chercher", nullptr));
         joursRestantsButton->setText(QCoreApplication::translate("MainWindow", "nombre de jours restant", nullptr));
-        qrCodeLabel->setText(QCoreApplication::translate("MainWindow", "TextLabel", nullptr));
+        qrCodeLabel->setText(QCoreApplication::translate("MainWindow", "QR", nullptr));
+        generateQRCodeButton->setText(QCoreApplication::translate("MainWindow", "QR", nullptr));
+        groupBox_2->setTitle(QString());
+        insertButton_3->setText(QCoreApplication::translate("MainWindow", "Ajouter", nullptr));
+        pushButton_annuler_3->setText(QCoreApplication::translate("MainWindow", "Annuler", nullptr));
+        updateButton_3->setText(QCoreApplication::translate("MainWindow", "Modifier", nullptr));
+        label_30->setText(QCoreApplication::translate("MainWindow", "Listes des Locataires", nullptr));
+        addAdminButton->setText(QCoreApplication::translate("MainWindow", "Ajouter un admin", nullptr));
     } // retranslateUi
 
 };
