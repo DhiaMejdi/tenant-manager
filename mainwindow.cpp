@@ -21,6 +21,7 @@
 #include <QDebug>
 #include <QSqlTableModel>
 #include "AddAdminDialog.h"
+#include "logger.h"
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -42,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->joursRestantsButton, &QPushButton::clicked, this, &MainWindow::calculerEtAfficherJoursRestants);
     connect(ui->addAdminButton, &QPushButton::clicked, this, &MainWindow::openAddAdminDialog);
     connect(ui->sortByEntryDateButton, &QPushButton::clicked, this, &MainWindow::onSortByEntryDate);
-
+    connect(ui->sortByDateButton, &QPushButton::clicked, this, &MainWindow::trierParDateSortie);
 }
 
 MainWindow::~MainWindow()
@@ -130,9 +131,7 @@ void MainWindow::onSort()
         proxyModel->setSourceModel(model);
         proxyModel->setSortRole(Qt::DisplayRole);
         proxyModel->sort(1, Qt::AscendingOrder);  // Sort by the NOM_LOCATAIRE column (index 1)
-
         ui->tableView->setModel(proxyModel);
-    } else {
         qDebug() << "Erreur SQL : " << query.lastError().text();
         QMessageBox::warning(this, "Erreur", "Impossible de trier les locataires.");
     }
@@ -274,16 +273,38 @@ void MainWindow::calculerEtAfficherJoursRestants()
     query.prepare("SELECT ID_LOCATAIRE, NOM_LOCATAIRE, DATE_ENT, DATE_SORTIE FROM LOCATAIRE");
 
     if (query.exec()) {
+        QString result;  // Une variable pour stocker tous les résultats
+
         while (query.next()) {
             int id = query.value("ID_LOCATAIRE").toInt();
+            QString nomLocataire = query.value("NOM_LOCATAIRE").toString();
             QDate dateSortie = query.value("DATE_SORTIE").toDate();
 
+            // Debug : Afficher chaque locataire traité
+            qDebug() << "Traitement Locataire ID" << id << "Nom:" << nomLocataire;
+
             if (dateSortie.isValid()) {
+                // Calcul du nombre de jours restants
                 int joursRestants = QDate::currentDate().daysTo(dateSortie);
-                QMessageBox::information(this, "Jours Restants",
-                                         QString("Locataire ID %1 - Jours restants : %2").arg(id).arg(joursRestants));
+
+                // Ajout du résultat de chaque locataire dans la chaîne
+                result += QString("Locataire ID %1 (%2) - Jours restants : %3\n")
+                              .arg(id).arg(nomLocataire).arg(joursRestants);
+            } else {
+                result += QString("Locataire ID %1 (%2) - Date de sortie invalide\n")
+                .arg(id).arg(nomLocataire);
             }
         }
+
+        // Si des résultats sont collectés, afficher une seule boîte de message
+        if (!result.isEmpty()) {
+            QMessageBox::information(this, "Jours Restants", result);
+        } else {
+            QMessageBox::information(this, "Aucun locataire", "Aucun locataire avec une date de sortie valide.");
+        }
+    } else {
+        qDebug() << "Erreur lors de la récupération des locataires : " << query.lastError().text();
+        QMessageBox::warning(this, "Erreur", "Impossible de récupérer les locataires.");
     }
 }
 
@@ -349,5 +370,23 @@ void MainWindow::onSortByEntryDate()
     } else {
         qDebug() << "Erreur SQL : " << query.lastError().text();
         QMessageBox::warning(this, "Erreur", "Impossible de trier les locataires par date d'entrée.");
+    }
+}
+void MainWindow::trierParDateSortie()
+{
+    QSqlQuery query;
+    query.prepare("SELECT ID_LOCATAIRE, NOM_LOCATAIRE, TYPE_LOCATAIRE, DATE_ENT, DATE_SORTIE FROM LOCATAIRE ORDER BY DATE_SORTIE ASC");  // Tri croissant par DATE_SORTIE
+
+    if (query.exec()) {
+        QSqlQueryModel *model = new QSqlQueryModel();
+        model->setQuery(query);
+
+        ui->tableView->setModel(model);
+        // Vous pouvez également personnaliser l'affichage du tableau
+        ui->tableView->resizeColumnsToContents(); // Ajuste la taille des colonnes
+        ui->tableView->horizontalHeader()->setStretchLastSection(true);  // Étend la dernière colonne
+    } else {
+        qDebug() << "Erreur SQL lors du tri par date de sortie : " << query.lastError().text();
+        QMessageBox::warning(this, "Erreur", "Impossible de trier les locataires par date de sortie.");
     }
 }

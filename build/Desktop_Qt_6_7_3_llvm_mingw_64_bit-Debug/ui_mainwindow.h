@@ -77,6 +77,7 @@ public:
     QLabel *label_30;
     QPushButton *addAdminButton;
     QPushButton *sortByEntryDateButton;
+    QPushButton *sortByDateButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -828,7 +829,7 @@ public:
 "    font-weight: bold;"));
         sortButton = new QPushButton(widget);
         sortButton->setObjectName("sortButton");
-        sortButton->setGeometry(QRect(1240, 330, 171, 41));
+        sortButton->setGeometry(QRect(1420, 280, 171, 41));
         sortButton->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
 "    color: white;\n"
 "    border-radius: 8px;\n"
@@ -856,7 +857,7 @@ public:
 "    font-weight: bold;"));
         joursRestantsButton = new QPushButton(widget);
         joursRestantsButton->setObjectName("joursRestantsButton");
-        joursRestantsButton->setGeometry(QRect(980, 330, 251, 41));
+        joursRestantsButton->setGeometry(QRect(930, 330, 251, 41));
         joursRestantsButton->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
 "    color: white;\n"
 "    border-radius: 8px;\n"
@@ -957,8 +958,17 @@ public:
 "    font-weight: bold;"));
         sortByEntryDateButton = new QPushButton(widget);
         sortByEntryDateButton->setObjectName("sortByEntryDateButton");
-        sortByEntryDateButton->setGeometry(QRect(1220, 280, 211, 41));
+        sortByEntryDateButton->setGeometry(QRect(1190, 330, 211, 41));
         sortByEntryDateButton->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
+"    color: white;\n"
+"    border-radius: 8px;\n"
+"    padding: 10px 15px;\n"
+"    font-size: 14px;\n"
+"    font-weight: bold;"));
+        sortByDateButton = new QPushButton(widget);
+        sortByDateButton->setObjectName("sortByDateButton");
+        sortByDateButton->setGeometry(QRect(1190, 280, 211, 41));
+        sortByDateButton->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
 "    color: white;\n"
 "    border-radius: 8px;\n"
 "    padding: 10px 15px;\n"
@@ -982,6 +992,7 @@ public:
         groupBox_2->raise();
         addAdminButton->raise();
         sortByEntryDateButton->raise();
+        sortByDateButton->raise();
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -1042,7 +1053,8 @@ public:
         updateButton_3->setText(QCoreApplication::translate("MainWindow", "Modifier", nullptr));
         label_30->setText(QCoreApplication::translate("MainWindow", "Listes des Locataires", nullptr));
         addAdminButton->setText(QCoreApplication::translate("MainWindow", "Ajouter un admin", nullptr));
-        sortByEntryDateButton->setText(QCoreApplication::translate("MainWindow", "Trie par date d'ent\303\251", nullptr));
+        sortByEntryDateButton->setText(QCoreApplication::translate("MainWindow", "Trie par date d'entr\303\251", nullptr));
+        sortByDateButton->setText(QCoreApplication::translate("MainWindow", "Trie par date sortie", nullptr));
     } // retranslateUi
 
 };

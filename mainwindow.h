@@ -49,6 +49,7 @@ private slots:
     void generateQRCodeFromLocataire();
     void openAddAdminDialog();
     void onSortByEntryDate();
+    void trierParDateSortie();
 
 private:
     Ui::MainWindow *ui;

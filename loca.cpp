@@ -58,6 +58,7 @@ QSqlTableModel* Loca::afficher()
     model->setHeaderData(3, Qt::Horizontal, "Date d'entrée");
     model->setHeaderData(4, Qt::Horizontal, "Statut de paiement");
     model->setHeaderData(5, Qt::Horizontal, "Date de sortie");
+    logToFile("Locataire afficher : " + QString::number(id_locataire) + ", " + nom_locataire);
 
     return model;
 }

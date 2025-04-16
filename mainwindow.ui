@@ -1138,8 +1138,8 @@ QCalendarWidget QAbstractItemView:disabled {
     <widget class="QPushButton" name="sortButton">
      <property name="geometry">
       <rect>
-       <x>1240</x>
-       <y>330</y>
+       <x>1420</x>
+       <y>280</y>
        <width>171</width>
        <height>41</height>
       </rect>
@@ -1202,7 +1202,7 @@ QCalendarWidget QAbstractItemView:disabled {
     <widget class="QPushButton" name="joursRestantsButton">
      <property name="geometry">
       <rect>
-       <x>980</x>
+       <x>930</x>
        <y>330</y>
        <width>251</width>
        <height>41</height>
@@ -1414,7 +1414,28 @@ border-radius: 10px;</string>
     <widget class="QPushButton" name="sortByEntryDateButton">
      <property name="geometry">
       <rect>
-       <x>1220</x>
+       <x>1190</x>
+       <y>330</y>
+       <width>211</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #8A2BE2;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;</string>
+     </property>
+     <property name="text">
+      <string>Trie par date d'entré</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="sortByDateButton">
+     <property name="geometry">
+      <rect>
+       <x>1190</x>
        <y>280</y>
        <width>211</width>
        <height>41</height>
@@ -1429,7 +1450,7 @@ border-radius: 10px;</string>
     font-weight: bold;</string>
      </property>
      <property name="text">
-      <string>Trie par date d'enté</string>
+      <string>Trie par date sortie</string>
      </property>
     </widget>
     <zorder>pushButton_11</zorder>
@@ -1450,6 +1471,7 @@ border-radius: 10px;</string>
     <zorder>groupBox_2</zorder>
     <zorder>addAdminButton</zorder>
     <zorder>sortByEntryDateButton</zorder>
+    <zorder>sortByDateButton</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
