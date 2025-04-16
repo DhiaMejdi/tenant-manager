@@ -22,8 +22,6 @@
 #include <QImage>
 #include <QDebug>
 #include <qrcodegen.hpp>
-#include "Loca.h"
-
 
 namespace Ui {
 class MainWindow;
@@ -50,6 +48,7 @@ private slots:
     void calculerEtAfficherJoursRestants();
     void generateQRCodeFromLocataire();
     void openAddAdminDialog();
+    void onSortByEntryDate();
 
 private:
     Ui::MainWindow *ui;

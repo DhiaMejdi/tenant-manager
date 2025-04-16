@@ -27,3 +27,6 @@ FORMS += \
     addadmindialog.ui \
     dialog.ui \
     mainwindow.ui
+
+RESOURCES += \
+    resources.qrc

@@ -13,6 +13,7 @@ Dialog::Dialog(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle("Login");
+    this->setWindowIcon(QIcon(":/login.png"));
 }
 Dialog::~Dialog()
 {

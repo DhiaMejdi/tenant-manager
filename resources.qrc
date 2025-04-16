@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>register.png</file>
+        <file>login.png</file>
+        <file>centerflow.png</file>
+    </qresource>
+</RCC>

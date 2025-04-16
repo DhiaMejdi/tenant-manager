@@ -10,6 +10,8 @@ AddAdminDialog::AddAdminDialog(QWidget *parent) :
     ui(new Ui::AddAdminDialog)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Register");
+    this->setWindowIcon(QIcon(":/register.png"));
 
     // Connexion du signal clicked() de QPushButton
     connect(ui->submitButton, &QPushButton::clicked, this, &AddAdminDialog::addAdminToDatabase);
@@ -22,9 +24,9 @@ AddAdminDialog::~AddAdminDialog()
 
 void AddAdminDialog::addAdminToDatabase()
 {
-    QString id = ui->idInput->text();
-    QString pass = ui->passwordInput->text();
-    QString confirm = ui->confirmPasswordInput->text();
+    QString id = ui->idInput->text();                  // au lieu de rz
+    QString pass = ui->passwordInput->text();          // au lieu de fezf
+    QString confirm = ui->confirmPasswordInput->text(); // au lieu de efr
 
     if (id.isEmpty() || pass.isEmpty() || confirm.isEmpty()) {
         QMessageBox::warning(this, "Champs vides", "Veuillez remplir tous les champs.");
@@ -39,7 +41,7 @@ void AddAdminDialog::addAdminToDatabase()
     QSqlQuery query;
     query.prepare("INSERT INTO USERS (ID, PASSWORD) VALUES (:id, :pass)");
     query.bindValue(":id", id);
-    query.bindValue(":pass", pass); // Sans hashage comme demandé
+    query.bindValue(":pass", pass);
 
     if (query.exec()) {
         QMessageBox::information(this, "Succès", "Admin ajouté avec succès.");

@@ -72,117 +72,13 @@ QDialog, QLineEdit, QPushButton {
 
 </string>
   </property>
-  <widget class="QDialogButtonBox" name="xx">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>231</y>
-     <width>341</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Orientation::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="idInput">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>50</y>
-     <width>113</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">/* Style général de la fenêtre */
-QDialog {
-    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-                                      stop:0 #a18cd1, stop:1 #fbc2eb);
-    border-radius: 12px;
-    padding: 20px;
-}
-
-/* Style des labels */
-QLabel {
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-/* Style des champs de texte */
-QLineEdit {
-    background-color: #ffffff;
-    border: 2px solid #a18cd1;
-    border-radius: 6px;
-    padding: 8px;
-    font-size: 14px;
-    color: #333333;
-}
-
-QLineEdit:focus {
-    border: 2px solid #fbc2eb;
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
-}
-
-/* Style du bouton Ajouter */
-QPushButton {
-    background-color: #6a3093;
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    margin-top: 10px;
-}
-
-QPushButton:hover {
-    background-color: #a044ff;
-    transform: scale(1.05);
-}
-
-QPushButton:pressed {
-    background-color: #5a2d84;
-}
-
-/* Ajoute une ombre portée légère */
-QDialog, QLineEdit, QPushButton {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="passwordInput">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>110</y>
-     <width>113</width>
-     <height>26</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="confirmPasswordInput">
-   <property name="geometry">
-    <rect>
-     <x>180</x>
-     <y>170</y>
-     <width>113</width>
-     <height>26</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="submitButton">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>200</y>
-     <width>181</width>
-     <height>41</height>
+     <x>270</x>
+     <y>240</y>
+     <width>121</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -194,43 +90,112 @@ QDialog, QLineEdit, QPushButton {
     font-weight: bold;</string>
    </property>
    <property name="text">
-    <string>afficher les locataires</string>
+    <string>Enregistrer</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="idInput">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>30</y>
+     <width>251</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    border: 2px solid #a18cd1;
+    border-radius: 6px;
+    padding: 6px 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #fbc2eb, stop:1 #a18cd1);
+    color: #2e2e2e;
+    font-size: 14px;
+    font-family: 'Segoe UI', sans-serif;
+    selection-background-color: #a18cd1;
+    selection-color: white;
+}
+
+QLineEdit:focus {
+    border: 2px solid #6a3093;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #c471f5, stop:1 #fa71cd);
+    color: black;
+}</string>
+   </property>
+   <property name="text">
+    <string>id</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="passwordInput">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>100</y>
+     <width>251</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    border: 2px solid #a18cd1;
+    border-radius: 6px;
+    padding: 6px 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #fbc2eb, stop:1 #a18cd1);
+    color: #2e2e2e;
+    font-size: 14px;
+    font-family: 'Segoe UI', sans-serif;
+    selection-background-color: #a18cd1;
+    selection-color: white;
+}
+
+QLineEdit:focus {
+    border: 2px solid #6a3093;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #c471f5, stop:1 #fa71cd);
+    color: black;
+}</string>
+   </property>
+   <property name="text">
+    <string>Password</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="confirmPasswordInput">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>180</y>
+     <width>251</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit {
+    border: 2px solid #a18cd1;
+    border-radius: 6px;
+    padding: 6px 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #fbc2eb, stop:1 #a18cd1);
+    color: #2e2e2e;
+    font-size: 14px;
+    font-family: 'Segoe UI', sans-serif;
+    selection-background-color: #a18cd1;
+    selection-color: white;
+}
+
+QLineEdit:focus {
+    border: 2px solid #6a3093;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 #c471f5, stop:1 #fa71cd);
+    color: black;
+}</string>
+   </property>
+   <property name="text">
+    <string>Confirm Password</string>
    </property>
   </widget>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>xx</sender>
-   <signal>accepted()</signal>
-   <receiver>AddAdminDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>xx</sender>
-   <signal>rejected()</signal>
-   <receiver>AddAdminDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

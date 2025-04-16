@@ -26,7 +26,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    // Connect signals to slots
+    this->setWindowTitle("CenterFlow");
+    this->setWindowIcon(QIcon(":/centerflow.png"));
     connect(ui->generateQRCodeButton, &QPushButton::clicked, this, [this]() {
         this->generateQRCodeFromLocataire();
     });
@@ -40,6 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->searchButton, &QPushButton::clicked, this, &MainWindow::rechercherParId);
     connect(ui->joursRestantsButton, &QPushButton::clicked, this, &MainWindow::calculerEtAfficherJoursRestants);
     connect(ui->addAdminButton, &QPushButton::clicked, this, &MainWindow::openAddAdminDialog);
+    connect(ui->sortByEntryDateButton, &QPushButton::clicked, this, &MainWindow::onSortByEntryDate);
 
 }
 
@@ -179,43 +181,50 @@ void MainWindow::exportPlayerListToPDF()
 void MainWindow::displayTenantStats()
 {
     QSqlQuery query;
-    query.prepare("SELECT ID_LOCATAIRE, NOM_LOCATAIRE FROM LOCATAIRE ORDER BY NOM_LOCATAIRE ASC");
+    query.prepare(R"(
+        SELECT TYPE_LOCATAIRE, COUNT(*) AS total
+        FROM LOCATAIRE
+        GROUP BY TYPE_LOCATAIRE
+        ORDER BY total DESC
+    )");
 
     if (!query.exec()) {
-        qDebug() << "Error fetching tenant stats: " << query.lastError().text();
+        qDebug() << "Erreur lors de la récupération des stats : " << query.lastError().text();
         return;
     }
 
-    QBarSet *tenantStatsSet = new QBarSet("Tenants Count");
-    QBarSeries *tenantStatsSeries = new QBarSeries();
-    QStringList tenantNames;
+    QBarSet *barSet = new QBarSet("Locataires par type");
+    QStringList categories;
 
     while (query.next()) {
-        int tenantId = query.value("ID_LOCATAIRE").toInt();
-        QString tenantName = query.value("NOM_LOCATAIRE").toString();
+        QString type = query.value("TYPE_LOCATAIRE").toString();
+        int count = query.value("total").toInt();
 
-        tenantNames << tenantName;
-        *tenantStatsSet << tenantId;  // Just counting tenants here
+        categories << type;
+        *barSet << count;
     }
-    tenantStatsSeries->append(tenantStatsSet);
+
+    QBarSeries *series = new QBarSeries();
+    series->append(barSet);
 
     QChart *chart = new QChart();
-    chart->addSeries(tenantStatsSeries);
-    chart->setTitle("Tenant Statistics");
+    chart->addSeries(series);
+    chart->setTitle("Nombre de locataires par type");
+    chart->setAnimationOptions(QChart::SeriesAnimations);
 
     QBarCategoryAxis *axisX = new QBarCategoryAxis();
-    axisX->append(tenantNames);
+    axisX->append(categories);
     chart->addAxis(axisX, Qt::AlignBottom);
-    tenantStatsSeries->attachAxis(axisX);
+    series->attachAxis(axisX);
 
     QValueAxis *axisY = new QValueAxis();
-    axisY->setRange(0, tenantNames.size());
+    axisY->setTitleText("Nombre");
     chart->addAxis(axisY, Qt::AlignLeft);
-    tenantStatsSeries->attachAxis(axisY);
+    series->attachAxis(axisY);
 
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
-    chartView->resize(800, 600);
+    chartView->resize(900, 600);
     chartView->show();
 }
 
@@ -322,4 +331,23 @@ void MainWindow::openAddAdminDialog()
     AddAdminDialog dialog(this);  // Utilise la vraie classe
     dialog.exec();  // Affiche le vrai formulaire conçu
 }
+void MainWindow::onSortByEntryDate()
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM LOCATAIRE ORDER BY DATE_ENT ASC");
 
+    if (query.exec()) {
+        QSqlQueryModel *model = new QSqlQueryModel();
+        model->setQuery(query);
+
+        QSortFilterProxyModel *proxyModel = new QSortFilterProxyModel();
+        proxyModel->setSourceModel(model);
+        proxyModel->setSortRole(Qt::DisplayRole);
+        proxyModel->sort(3, Qt::AscendingOrder);  // Tri par la date d'entrée (colonne index 3)
+
+        ui->tableView->setModel(proxyModel);
+    } else {
+        qDebug() << "Erreur SQL : " << query.lastError().text();
+        QMessageBox::warning(this, "Erreur", "Impossible de trier les locataires par date d'entrée.");
+    }
+}

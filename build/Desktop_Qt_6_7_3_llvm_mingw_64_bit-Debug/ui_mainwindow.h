@@ -76,6 +76,7 @@ public:
     QPushButton *updateButton_3;
     QLabel *label_30;
     QPushButton *addAdminButton;
+    QPushButton *sortByEntryDateButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -954,6 +955,15 @@ public:
 "    padding: 10px 15px;\n"
 "    font-size: 8px;\n"
 "    font-weight: bold;"));
+        sortByEntryDateButton = new QPushButton(widget);
+        sortByEntryDateButton->setObjectName("sortByEntryDateButton");
+        sortByEntryDateButton->setGeometry(QRect(1220, 280, 211, 41));
+        sortByEntryDateButton->setStyleSheet(QString::fromUtf8("background-color: #8A2BE2;\n"
+"    color: white;\n"
+"    border-radius: 8px;\n"
+"    padding: 10px 15px;\n"
+"    font-size: 14px;\n"
+"    font-weight: bold;"));
         pushButton_11->raise();
         widget_2->raise();
         exportButton->raise();
@@ -971,6 +981,7 @@ public:
         generateQRCodeButton->raise();
         groupBox_2->raise();
         addAdminButton->raise();
+        sortByEntryDateButton->raise();
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -1031,6 +1042,7 @@ public:
         updateButton_3->setText(QCoreApplication::translate("MainWindow", "Modifier", nullptr));
         label_30->setText(QCoreApplication::translate("MainWindow", "Listes des Locataires", nullptr));
         addAdminButton->setText(QCoreApplication::translate("MainWindow", "Ajouter un admin", nullptr));
+        sortByEntryDateButton->setText(QCoreApplication::translate("MainWindow", "Trie par date d'ent\303\251", nullptr));
     } // retranslateUi
 
 };

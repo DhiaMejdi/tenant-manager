@@ -1411,6 +1411,27 @@ border-radius: 10px;</string>
       <string>Ajouter un admin</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="sortByEntryDateButton">
+     <property name="geometry">
+      <rect>
+       <x>1220</x>
+       <y>280</y>
+       <width>211</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: #8A2BE2;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: bold;</string>
+     </property>
+     <property name="text">
+      <string>Trie par date d'enté</string>
+     </property>
+    </widget>
     <zorder>pushButton_11</zorder>
     <zorder>widget_2</zorder>
     <zorder>exportButton</zorder>
@@ -1428,6 +1449,7 @@ border-radius: 10px;</string>
     <zorder>generateQRCodeButton</zorder>
     <zorder>groupBox_2</zorder>
     <zorder>addAdminButton</zorder>
+    <zorder>sortByEntryDateButton</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
