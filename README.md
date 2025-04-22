@@ -1,45 +1,79 @@
-# Locataire Management System
+# 🏢 Tenant Management System
 
-A desktop application built with Qt for managing tenants (locataires), including CRUD operations, PDF export, QR code generation, and data visualization via charts.
+![Qt Version](https://img.shields.io/badge/Qt-5/6-blue)
+![Language](https://img.shields.io/badge/C++-17-blueviolet)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Platform](https://img.shields.io/badge/platform-Desktop%20App-lightgrey)
 
-## 📦 Features
-
-- Add, update, delete, and search tenants.
-- Export tenant list to PDF.
-- Generate QR code for tenant names.
-- View basic statistical charts.
-- Login authentication using Oracle SQL (via ODBC).
-- Clean and responsive UI built with Qt Designer.
-
-## 🛠️ Tech Stack
-
-- **C++ / Qt 6.7**
-- **Qt Widgets / Charts / PrintSupport / SQL Modules**
-- **Oracle SQL Developer** (for DB management)
-- **ODBC Driver** (for database connection)
-- **qrcodegen** (QR code generation)
+A Qt/C++ desktop application for managing tenants in a residential building or housing complex. Designed for administrators, landlords, or building managers to streamline daily tasks such as tenant tracking, QR code generation, and data analysis.
 
 ---
 
-## 🧰 Requirements
+## 🚀 Features
 
-- Qt 6.7.x or newer (including `QtSql`, `QtCharts`, `QtPrintSupport`, and `QtNetwork`)
-- Oracle SQL Developer (Database setup)
-- Oracle ODBC Driver installed
-- `qrcodegen` library (included)
+- ➕ Add new tenants  
+- 📝 Edit tenant details  
+- ❌ Delete tenants  
+- 👁️ Display tenants in a sortable, searchable table  
+- 📎 Generate QR Codes with tenant information  
+- 🔍 Sort and filter tenants  
+- 📊 View statistics and analytics using charts  
+- 🔐 Login system for secure access  
+
+## 🛠️ Technologies Used
+
+- **Qt Framework 5/6**
+- **C++**
+- **SQLite / MySQL** for database
+- **QtCharts** for statistics
+- **QZXing** or another QR Code generator library
+- **QSqlDatabase / QMessageBox / QTableView**
 
 ---
 
-## 🔌 Database Configuration
+## 💻 Installation
 
-1. Ensure **Oracle Database** is running and accessible.
-2. Configure an **ODBC connection** to your Oracle DB:
-   - Use `ODBC Data Source Administrator` (64-bit) on Windows.
-   - Set up a **DSN** named `ORACLE_DSN` or as needed.
-3. Update your `connection.cpp` (or similar) to match your DSN and credentials:
+### Prerequisites
 
-```cpp
-QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
-db.setDatabaseName("DSN=ORACLE_DSN");  // Replace with your actual DSN name
-db.setUserName("your_username");
-db.setPassword("your_password");
+- Qt Creator (v5 or v6)
+- C++17 support
+- Git (optional)
+
+### Steps
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/dhiamejdi/tenant-management.git
+🧾 Database
+This app works with:
+
+SQLite (local database file)
+
+or MySQL via ODBC/QMYSQL driver
+
+Use the database.sql script to create the initial schema.
+
+📈 Statistics Module
+Displays real-time charts using QtCharts for:
+
+Tenants per apartment type
+
+Registrations over time
+
+Payment statuses
+
+🔐 Login System
+Includes a basic secure login for administrators.
+Default credentials can be configured directly in the database.
+
+🤝 Contribution
+Pull requests are welcome!
+Open an issue first to discuss major feature changes.
+
+📜 License
+This project is licensed under the MIT License.
+See the LICENSE file for more information.
+
+👤 Author
+Developed by [Dhia Mejdi]
+📧 Contact: dhiamejdi@gmail.com
