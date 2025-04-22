@@ -69,12 +69,12 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "onSort",
     "exportPlayerListToPDF",
     "displayTenantStats",
-    "rechercherParId",
     "calculerEtAfficherJoursRestants",
     "generateQRCodeFromLocataire",
     "openAddAdminDialog",
     "onSortByEntryDate",
-    "trierParDateSortie"
+    "trierParDateSortie",
+    "rechercherParIdOuNom"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -150,8 +150,6 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'displayTenantStats'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'rechercherParId'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'calculerEtAfficherJoursRestants'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'generateQRCodeFromLocataire'
@@ -161,6 +159,8 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         // method 'onSortByEntryDate'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'trierParDateSortie'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'rechercherParIdOuNom'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -179,12 +179,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->onSort(); break;
         case 5: _t->exportPlayerListToPDF(); break;
         case 6: _t->displayTenantStats(); break;
-        case 7: _t->rechercherParId(); break;
-        case 8: _t->calculerEtAfficherJoursRestants(); break;
-        case 9: _t->generateQRCodeFromLocataire(); break;
-        case 10: _t->openAddAdminDialog(); break;
-        case 11: _t->onSortByEntryDate(); break;
-        case 12: _t->trierParDateSortie(); break;
+        case 7: _t->calculerEtAfficherJoursRestants(); break;
+        case 8: _t->generateQRCodeFromLocataire(); break;
+        case 9: _t->openAddAdminDialog(); break;
+        case 10: _t->onSortByEntryDate(); break;
+        case 11: _t->trierParDateSortie(); break;
+        case 12: _t->rechercherParIdOuNom(); break;
         default: ;
         }
     }

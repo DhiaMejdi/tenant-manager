@@ -6,7 +6,6 @@
 #include <QDebug>
 #include "logger.h"
 #include "addadmindialog.h"
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

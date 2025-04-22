@@ -44,12 +44,12 @@ private slots:
     void onSort();
     void exportPlayerListToPDF();
     void displayTenantStats();
-    void rechercherParId();
     void calculerEtAfficherJoursRestants();
     void generateQRCodeFromLocataire();
     void openAddAdminDialog();
     void onSortByEntryDate();
     void trierParDateSortie();
+    void rechercherParIdOuNom();
 
 private:
     Ui::MainWindow *ui;

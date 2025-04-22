@@ -39,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->updateButton, &QPushButton::clicked, this, &MainWindow::onUpdate);
     connect(ui->deleteButton, &QPushButton::clicked, this, &MainWindow::onDelete);
     connect(ui->sortButton, &QPushButton::clicked, this, &MainWindow::onSort);
-    connect(ui->searchButton, &QPushButton::clicked, this, &MainWindow::rechercherParId);
+    connect(ui->searchButton, &QPushButton::clicked, this, &MainWindow::rechercherParIdOuNom);
     connect(ui->joursRestantsButton, &QPushButton::clicked, this, &MainWindow::calculerEtAfficherJoursRestants);
     connect(ui->addAdminButton, &QPushButton::clicked, this, &MainWindow::openAddAdminDialog);
     connect(ui->sortByEntryDateButton, &QPushButton::clicked, this, &MainWindow::onSortByEntryDate);
@@ -226,47 +226,6 @@ void MainWindow::displayTenantStats()
     chartView->resize(900, 600);
     chartView->show();
 }
-
-void MainWindow::rechercherParId()
-{
-    bool ok;
-    int id = ui->idSearchInput->text().toInt(&ok);
-    if (!ok) {
-        QMessageBox::warning(this, "Erreur", "Veuillez entrer un ID valide.");
-        return;
-    }
-
-    QSqlQuery query;
-    query.prepare("SELECT ID_LOCATAIRE, NOM_LOCATAIRE, TYPE_LOCATAIRE, DATE_ENT, DATE_SORTIE FROM LOCATAIRE WHERE ID_LOCATAIRE = :id");
-    query.bindValue(":id", id);
-
-    if (query.exec()) {
-        if (query.next()) {
-            QString nomLocataire = query.value("NOM_LOCATAIRE").toString();
-            QString typeLocataire = query.value("TYPE_LOCATAIRE").toString();
-            QDate dateEntree = query.value("DATE_ENT").toDate();
-            QDate dateSortie = query.value("DATE_SORTIE").toDate();
-
-            QString info = QString("Locataire trouvé :\n"
-                                   "Nom : %1\n"
-                                   "Type : %2\n"
-                                   "Date d'entrée : %3\n"
-                                   "Date de sortie : %4")
-                               .arg(nomLocataire)
-                               .arg(typeLocataire)
-                               .arg(dateEntree.toString("dd/MM/yyyy"))
-                               .arg(dateSortie.isValid() ? dateSortie.toString("dd/MM/yyyy") : "Non spécifiée");
-
-            QMessageBox::information(this, "Informations du Locataire", info);
-        } else {
-            QMessageBox::information(this, "Résultat de la recherche", "Le locataire n'existe pas.");
-        }
-    } else {
-        qDebug() << "Erreur SQL : " << query.lastError().text();
-        QMessageBox::warning(this, "Erreur", "Impossible de rechercher le locataire.");
-    }
-}
-
 void MainWindow::calculerEtAfficherJoursRestants()
 {
     QSqlQuery query;
@@ -388,5 +347,64 @@ void MainWindow::trierParDateSortie()
     } else {
         qDebug() << "Erreur SQL lors du tri par date de sortie : " << query.lastError().text();
         QMessageBox::warning(this, "Erreur", "Impossible de trier les locataires par date de sortie.");
+    }
+}
+void MainWindow::rechercherParIdOuNom()
+{
+    QString searchText = ui->idSearchInput->text().trimmed();
+
+    // Vérifie si l'utilisateur a saisi quelque chose
+    if (searchText.isEmpty()) {
+        QMessageBox::warning(this, "Erreur", "Veuillez entrer un ID ou un nom.");
+        return;
+    }
+
+    QSqlQuery query;
+
+    // Vérifie si la saisie est un nombre (on suppose que l'ID est un entier)
+    bool isNumber;
+    int id = searchText.toInt(&isNumber);
+
+    if (isNumber) {
+        // Recherche par ID
+        query.prepare("SELECT ID_LOCATAIRE, NOM_LOCATAIRE, TYPE_LOCATAIRE, DATE_ENT, DATE_SORTIE "
+                      "FROM LOCATAIRE WHERE ID_LOCATAIRE = :id");
+        query.bindValue(":id", id);
+    } else {
+        // Recherche par nom
+        query.prepare("SELECT ID_LOCATAIRE, NOM_LOCATAIRE, TYPE_LOCATAIRE, DATE_ENT, DATE_SORTIE "
+                      "FROM LOCATAIRE WHERE NOM_LOCATAIRE LIKE :nom");
+        query.bindValue(":nom", "%" + searchText + "%");
+    }
+
+    if (query.exec()) {
+        if (query.next()) {
+            // Si un locataire est trouvé
+            QString idLocataire = query.value("ID_LOCATAIRE").toString();
+            QString nomLocataire = query.value("NOM_LOCATAIRE").toString();
+            QString typeLocataire = query.value("TYPE_LOCATAIRE").toString();
+            QDate dateEntree = query.value("DATE_ENT").toDate();
+            QDate dateSortie = query.value("DATE_SORTIE").toDate();
+
+            QString info = QString("Locataire trouvé :\n"
+                                   "ID : %1\n"
+                                   "Nom : %2\n"
+                                   "Type : %3\n"
+                                   "Date d'entrée : %4\n"
+                                   "Date de sortie : %5")
+                               .arg(idLocataire)
+                               .arg(nomLocataire)
+                               .arg(typeLocataire)
+                               .arg(dateEntree.toString("dd/MM/yyyy"))
+                               .arg(dateSortie.isValid() ? dateSortie.toString("dd/MM/yyyy") : "Non spécifiée");
+
+            QMessageBox::information(this, "Informations du Locataire", info);
+        } else {
+            // Aucun résultat trouvé
+            QMessageBox::information(this, "Résultat de la recherche", "Aucun locataire trouvé.");
+        }
+    } else {
+        qDebug() << "Erreur SQL : " << query.lastError().text();
+        QMessageBox::warning(this, "Erreur", "Impossible de rechercher le locataire.");
     }
 }
